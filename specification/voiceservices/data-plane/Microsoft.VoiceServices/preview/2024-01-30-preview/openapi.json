@@ -568,7 +568,7 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "404": {
@@ -580,7 +580,7 @@
           "500": {
             "description": "Server error",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         },
@@ -636,13 +636,13 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
             "description": "Server error",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         },
@@ -2046,50 +2046,6 @@
         "teamsDrEnabled",
         "teamsTpmEnabled",
         "zoomEnabled"
-      ]
-    },
-    "OcErrorDetails": {
-      "type": "object",
-      "description": "Error details returned from the Teams API for queries passed through to Teams.",
-      "properties": {
-        "code": {
-          "type": "string",
-          "description": "The error code returned from the Teams API"
-        },
-        "message": {
-          "type": "string",
-          "description": "The error message returned from the Teams API"
-        }
-      },
-      "required": [
-        "code"
-      ]
-    },
-    "OcErrorResponseBody": {
-      "type": "object",
-      "description": "Error body to return when requests to Teams API fails",
-      "properties": {
-        "code": {
-          "type": "string",
-          "description": "The error code returned by the Teams API."
-        },
-        "message": {
-          "type": "string",
-          "description": "The error message returned by the Teams API."
-        },
-        "details": {
-          "type": "array",
-          "description": "The error details returned from the Teams API.",
-          "items": {
-            "$ref": "#/definitions/OcErrorDetails"
-          },
-          "x-ms-identifiers": []
-        }
-      },
-      "required": [
-        "code",
-        "message",
-        "details"
       ]
     },
     "PhoneNumber": {

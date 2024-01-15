@@ -367,27 +367,6 @@ model ProvisioningError {
   message?: string;
 }
 
-@doc("Error details returned from the Teams API for queries passed through to Teams.")
-model OcErrorDetails {
-  @doc("The error code returned from the Teams API")
-  code: string;
-
-  @doc("The error message returned from the Teams API")
-  message?: string;
-}
-
-@doc("Error body to return when requests to Teams API fails")
-model OcErrorResponseBody {
-  @doc("The error code returned by the Teams API.")
-  code: string;
-
-  @doc("The error message returned by the Teams API.")
-  message: string;
-
-  @doc("The error details returned from the Teams API.")
-  details: OcErrorDetails[];
-}
-
 @doc("List of all service provisioning errors for the object.")
 model ServiceProvisioningErrors {
   @doc("List of service provisioning errors.")
@@ -1200,7 +1179,7 @@ namespace Accounts {
     | {
         @statusCode statusCode: 400;
         @header contentType: "application/json";
-        @body error: OcErrorResponseBody;
+        @body error: ErrorResponse;
       }
     | {
         @statusCode statusCode: 404;
@@ -1210,7 +1189,7 @@ namespace Accounts {
     | {
         @statusCode statusCode: 500;
         @header contentType: "application/json";
-        @body error: OcErrorResponseBody;
+        @body error: ErrorResponse;
       };
 
   @route("/teams/civic-addresses")
@@ -1233,11 +1212,11 @@ namespace Accounts {
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: OcErrorResponseBody;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
     @header contentType: "application/json";
-    @body error: OcErrorResponseBody;
+    @body error: ErrorResponse;
   };
 
   @route("/teams/capabilities/")
