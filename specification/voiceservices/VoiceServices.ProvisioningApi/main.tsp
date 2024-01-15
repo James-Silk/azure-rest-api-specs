@@ -325,6 +325,12 @@ enum AssignmentStatus {
   NA: "Not Applicable",
 }
 
+@doc("Contains details when the response code indicates an error.")
+model ErrorResponse {
+  @doc("The error details.")
+  error: ErrorDetail;
+}
+
 @doc("The code and message for an error.")
 model ErrorDetail {
   @doc("A machine readable error code.")
@@ -753,6 +759,8 @@ op accounts(...FilterListQueryParameters, ...ApiVersionParameter): {
   @statusCode statusCode: 204;
 } | {
   @statusCode statusCode: 500;
+  @header contentType: "application/json";
+  @body error: ErrorResponse;
 };
 
 @route("/accounts/teamstenant/{tenantId}")
@@ -770,8 +778,12 @@ op getAccountsByTenant(
   @body success: AccountResponsePaginatedList;
 } | {
   @statusCode statusCode: 404;
+  @header contentType: "application/json";
+  @body error: ErrorResponse;
 } | {
   @statusCode statusCode: 500;
+  @header contentType: "application/json";
+  @body error: ErrorResponse;
 };
 
 @route("/accounts/{accountName}")
@@ -801,9 +813,11 @@ namespace Account {
   } | {
     @statusCode statusCode: 404;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @put
@@ -847,10 +861,12 @@ namespace Account {
     | {
         @statusCode statusCode: 400 | 404 | 409 | 412;
         @header contentType: "application/json";
-        @body error: ErrorDetail;
+        @body error: ErrorResponse;
       }
     | {
         @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
       };
 
   @patch
@@ -894,10 +910,12 @@ namespace Account {
     | {
         @statusCode statusCode: 400 | 404 | 409 | 412;
         @header contentType: "application/json";
-        @body error: ErrorDetail;
+        @body error: ErrorResponse;
       }
     | {
         @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
       };
 
   @delete
@@ -921,9 +939,11 @@ namespace Account {
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
@@ -957,9 +977,11 @@ namespace Accounts {
   } | {
     @statusCode statusCode: 400 | 404;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @delete
@@ -989,9 +1011,11 @@ namespace Accounts {
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/numbers")
@@ -1020,10 +1044,12 @@ namespace Accounts {
     | {
         @statusCode statusCode: 404;
         @header contentType: "application/json";
-        @body error: ErrorDetail;
+        @body error: ErrorResponse;
       }
     | {
         @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
       };
 
   @route("/numbers/{phoneNumber}")
@@ -1052,9 +1078,11 @@ namespace Accounts {
   } | {
     @statusCode statusCode: 404;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/numbers/{phoneNumber}")
@@ -1107,10 +1135,12 @@ namespace Accounts {
     | {
         @statusCode statusCode: 400 | 404 | 409 | 412;
         @header contentType: "application/json";
-        @body error: ErrorDetail;
+        @body error: ErrorResponse;
       }
     | {
         @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
       };
 
   @route("/numbers/{phoneNumber}")
@@ -1139,9 +1169,11 @@ namespace Accounts {
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/teams/civic-address/{civicAddressId}")
@@ -1172,6 +1204,8 @@ namespace Accounts {
       }
     | {
         @statusCode statusCode: 404;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
       }
     | {
         @statusCode statusCode: 500;
@@ -1232,8 +1266,12 @@ namespace Accounts {
     @body success: TeamsCapabilitiesPaginatedList;
   } | {
     @statusCode statusCode: 400 | 404;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/teams/sync")
@@ -1262,8 +1300,12 @@ namespace Accounts {
     @statusCode statusCode: 200;
   } | {
     @statusCode statusCode: 400;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
@@ -1289,6 +1331,8 @@ namespace NumbersFromAllAccounts {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
@@ -1312,6 +1356,8 @@ namespace Rfis {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
@@ -1332,8 +1378,12 @@ namespace Rfi {
     @body success: RfiDetails;
   } | {
     @statusCode statusCode: 404;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/customer-relationship")
@@ -1360,8 +1410,10 @@ namespace Rfi {
   } | {
     @statusCode statusCode: 400 | 404 | 409 | 412;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }

@@ -90,11 +90,14 @@
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -150,11 +153,14 @@
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -239,29 +245,32 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -312,11 +321,14 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -371,17 +383,20 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -431,11 +446,14 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -485,13 +503,22 @@
             }
           },
           "400": {
-            "description": "The server could not understand the request due to invalid syntax."
+            "description": "The server could not understand the request due to invalid syntax.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -545,7 +572,10 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           },
           "500": {
             "description": "Server error",
@@ -663,10 +693,16 @@
             "description": "The request has succeeded."
           },
           "400": {
-            "description": "The server could not understand the request due to invalid syntax."
+            "description": "The server could not understand the request due to invalid syntax.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -715,7 +751,10 @@
             "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -792,29 +831,32 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -889,29 +931,32 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -959,11 +1004,14 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -1016,11 +1064,14 @@
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -1061,10 +1112,16 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -1123,7 +1180,10 @@
             "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -1164,10 +1224,16 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -1219,29 +1285,32 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -1297,7 +1366,10 @@
             "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -1769,6 +1841,19 @@
       "required": [
         "code",
         "message"
+      ]
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "description": "Contains details when the response code indicates an error.",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorDetail",
+          "description": "The error details."
+        }
+      },
+      "required": [
+        "error"
       ]
     },
     "InnerError": {
