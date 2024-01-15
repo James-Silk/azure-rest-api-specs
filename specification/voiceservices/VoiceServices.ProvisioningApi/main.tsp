@@ -57,7 +57,8 @@ model CustomSipHeader {
   @minLength(1)
   @maxLength(100)
   @pattern("^([A-Za-z0-9_-])+$")
-  customSipHeaderString: string;
+  @projectedName("csharp", "customSipHeaderString")
+  customSipHeader: string;
 }
 
 @doc("A list of phone numbers")
