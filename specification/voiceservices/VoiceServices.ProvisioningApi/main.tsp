@@ -344,6 +344,10 @@ model ErrorDetail {
 
   @doc("An object containing more specific information about the error.")
   innerError?: InnerError;
+
+  // Allow additional properties
+  @doc("Additional properties that can be provided about the error.")
+  additionalProperties?: {};
 }
 
 @doc("More specific information on an error object.")

@@ -1836,6 +1836,10 @@
         "innerError": {
           "$ref": "#/definitions/InnerError",
           "description": "An object containing more specific information about the error."
+        },
+        "additionalProperties": {
+          "type": "object",
+          "description": "Additional properties that can be provided about the error."
         }
       },
       "required": [
