@@ -98,10 +98,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_GetNumbers_MaximumSet_Gen": {
+          "Get list of Numbers on an Account (Maximum).": {
             "$ref": "./examples/Accounts_GetNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_GetNumbers_MinimumSet_Gen": {
+          "Get list of Numbers on an Account (Minimum).": {
             "$ref": "./examples/Accounts_GetNumbers_MinimumSet_Gen.json"
           }
         }
@@ -158,10 +158,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_GetPhoneNumbers_MaximumSet_Gen": {
+          "Get a Number (Maximum).": {
             "$ref": "./examples/Accounts_GetPhoneNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_GetPhoneNumbers_MinimumSet_Gen": {
+          "Get a Number (Minimum).": {
             "$ref": "./examples/Accounts_GetPhoneNumbers_MinimumSet_Gen.json"
           }
         }
@@ -265,10 +265,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_PutPhoneNumbers_MaximumSet_Gen": {
+          "Create or update a Number (Maximum).": {
             "$ref": "./examples/Accounts_PutPhoneNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_PutPhoneNumbers_MinimumSet_Gen": {
+          "Create or update a Number (Minimum).": {
             "$ref": "./examples/Accounts_PutPhoneNumbers_MinimumSet_Gen.json"
           }
         }
@@ -320,16 +320,16 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_DeletePhoneNumbers_MaximumSet_Gen": {
+          "Delete Number (Maximum).": {
             "$ref": "./examples/Accounts_DeletePhoneNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_DeletePhoneNumbers_MinimumSet_Gen": {
+          "Delete Number (Minimum).": {
             "$ref": "./examples/Accounts_DeletePhoneNumbers_MinimumSet_Gen.json"
           }
         }
       }
     },
-    "/account/{accountName}/numbers/batch": {
+    "/account/{accountName}/numbers:batch": {
       "patch": {
         "operationId": "Accounts_PatchBatchNumbers",
         "tags": [
@@ -385,10 +385,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_PatchBatchNumbers_MaximumSet_Gen": {
+          "Create or update Numbers (Maximum).": {
             "$ref": "./examples/Accounts_PatchBatchNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_PatchBatchNumbers_MinimumSet_Gen": {
+          "Create or update Numbers (Minimum).": {
             "$ref": "./examples/Accounts_PatchBatchNumbers_MinimumSet_Gen.json"
           }
         }
@@ -439,10 +439,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_DeleteBatchNumbers_MaximumSet_Gen": {
+          "Delete batches of numbers (Maximum).": {
             "$ref": "./examples/Accounts_DeleteBatchNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_DeleteBatchNumbers_MinimumSet_Gen": {
+          "Delete batches of numbers (Minimum).": {
             "$ref": "./examples/Accounts_DeleteBatchNumbers_MinimumSet_Gen.json"
           }
         }
@@ -495,10 +495,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_GetCapabilities_MaximumSet_Gen": {
+          "Get the list of usages available (Maximum).": {
             "$ref": "./examples/Accounts_GetCapabilities_MaximumSet_Gen.json"
           },
-          "Accounts_GetCapabilities_MinimumSet_Gen": {
+          "Get the list of usages available (Minimum).": {
             "$ref": "./examples/Accounts_GetCapabilities_MinimumSet_Gen.json"
           }
         }
@@ -555,10 +555,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_GetTeamsCivicAddress_MaximumSet_Gen": {
+          "Get a Civic Address (Maximum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddress_MaximumSet_Gen.json"
           },
-          "Accounts_GetTeamsCivicAddress_MinimumSet_Gen": {
+          "Get a Civic Address (Minimum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddress_MinimumSet_Gen.json"
           }
         }
@@ -617,10 +617,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_GetTeamsCivicAddresses_MaximumSet_Gen": {
+          "Get a list of Civic Addresses (Maximum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddresses_MaximumSet_Gen.json"
           },
-          "Accounts_GetTeamsCivicAddresses_MinimumSet_Gen": {
+          "Get a list of Civic Addresses (Minimum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddresses_MinimumSet_Gen.json"
           }
         }
@@ -670,10 +670,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_SetTeamsSync_MaximumSet_Gen": {
+          "Enable or disable syncing of provisioned data to Teams (Maximum).": {
             "$ref": "./examples/Accounts_SetTeamsSync_MaximumSet_Gen.json"
           },
-          "Accounts_SetTeamsSync_MinimumSet_Gen": {
+          "Enable or disable syncing of provisioned data to Teams (Minimum).": {
             "$ref": "./examples/Accounts_SetTeamsSync_MinimumSet_Gen.json"
           }
         }
@@ -719,10 +719,10 @@
           }
         },
         "x-ms-examples": {
-          "Accounts_MaximumSet_Gen": {
+          "Get list of Accounts (Maximum).": {
             "$ref": "./examples/Accounts_MaximumSet_Gen.json"
           },
-          "Accounts_MinimumSet_Gen": {
+          "Get list of Accounts (Minimum).": {
             "$ref": "./examples/Accounts_MinimumSet_Gen.json"
           }
         }
@@ -818,10 +818,10 @@
           }
         },
         "x-ms-examples": {
-          "Account_Put_MaximumSet_Gen": {
+          "Create or update Account (Maximum).": {
             "$ref": "./examples/Account_Put_MaximumSet_Gen.json"
           },
-          "Account_Put_MinimumSet_Gen": {
+          "Create or update Account (Minimum).": {
             "$ref": "./examples/Account_Put_MinimumSet_Gen.json"
           }
         }
@@ -915,10 +915,10 @@
           }
         },
         "x-ms-examples": {
-          "Account_Patch_MaximumSet_Gen": {
+          "Create or update Account (Maximum).": {
             "$ref": "./examples/Account_Patch_MaximumSet_Gen.json"
           },
-          "Account_Patch_MinimumSet_Gen": {
+          "Create or update Account (Minimum).": {
             "$ref": "./examples/Account_Patch_MinimumSet_Gen.json"
           }
         }
@@ -967,10 +967,10 @@
           }
         },
         "x-ms-examples": {
-          "Account_Delete_MaximumSet_Gen": {
+          "Delete Account (Maximum).": {
             "$ref": "./examples/Account_Delete_MaximumSet_Gen.json"
           },
-          "Account_Delete_MinimumSet_Gen": {
+          "Delete Account (Minimum).": {
             "$ref": "./examples/Account_Delete_MinimumSet_Gen.json"
           }
         }
@@ -1024,10 +1024,10 @@
           }
         },
         "x-ms-examples": {
-          "Account_Get_MaximumSet_Gen": {
+          "Get Account (Maximum).": {
             "$ref": "./examples/Account_Get_MaximumSet_Gen.json"
           },
-          "Account_Get_MinimumSet_Gen": {
+          "Get Account (Minimum).": {
             "$ref": "./examples/Account_Get_MinimumSet_Gen.json"
           }
         }
@@ -1068,10 +1068,10 @@
           }
         },
         "x-ms-examples": {
-          "GetAccountsByTenant_MaximumSet_Gen": {
+          "Get accounts with with Teams services using the specified Tenant ID (Maximum).": {
             "$ref": "./examples/GetAccountsByTenant_MaximumSet_Gen.json"
           },
-          "GetAccountsByTenant_MinimumSet_Gen": {
+          "Get accounts with with Teams services using the specified Tenant ID (Minimum).": {
             "$ref": "./examples/GetAccountsByTenant_MinimumSet_Gen.json"
           }
         }
@@ -1127,10 +1127,10 @@
           }
         },
         "x-ms-examples": {
-          "NumbersFromAllAccounts_ListAllNumbers_MaximumSet_Gen": {
+          "Get list of numbers (Maximum).": {
             "$ref": "./examples/NumbersFromAllAccounts_ListAllNumbers_MaximumSet_Gen.json"
           },
-          "NumbersFromAllAccounts_ListAllNumbers_MinimumSet_Gen": {
+          "Get list of numbers (Minimum).": {
             "$ref": "./examples/NumbersFromAllAccounts_ListAllNumbers_MinimumSet_Gen.json"
           }
         }
@@ -1171,10 +1171,10 @@
           }
         },
         "x-ms-examples": {
-          "Rfi_GetRfiByTenant_MaximumSet_Gen": {
+          "Get an RFI by tenant ID (Maximum).": {
             "$ref": "./examples/Rfi_GetRfiByTenant_MaximumSet_Gen.json"
           },
-          "Rfi_GetRfiByTenant_MinimumSet_Gen": {
+          "Get an RFI by tenant ID (Minimum).": {
             "$ref": "./examples/Rfi_GetRfiByTenant_MinimumSet_Gen.json"
           }
         }
@@ -1245,10 +1245,10 @@
           }
         },
         "x-ms-examples": {
-          "Rfi_UpdateCustomerRelationship_MaximumSet_Gen": {
+          "Update the Customer Relationship (Maximum).": {
             "$ref": "./examples/Rfi_UpdateCustomerRelationship_MaximumSet_Gen.json"
           },
-          "Rfi_UpdateCustomerRelationship_MinimumSet_Gen": {
+          "Update the Customer Relationship (Minimum).": {
             "$ref": "./examples/Rfi_UpdateCustomerRelationship_MinimumSet_Gen.json"
           }
         }
@@ -1301,10 +1301,10 @@
           }
         },
         "x-ms-examples": {
-          "Rfis_GetRfis_MaximumSet_Gen": {
+          "Get list of Requests for Information (Consents) (Maximum).": {
             "$ref": "./examples/Rfis_GetRfis_MaximumSet_Gen.json"
           },
-          "Rfis_GetRfis_MinimumSet_Gen": {
+          "Get list of Requests for Information (Consents) (Minimum).": {
             "$ref": "./examples/Rfis_GetRfis_MinimumSet_Gen.json"
           }
         }
