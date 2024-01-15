@@ -342,8 +342,8 @@
       }
     },
     "/account/{accountName}/numbers:batch": {
-      "patch": {
-        "operationId": "Accounts_PatchBatchNumbers",
+      "post": {
+        "operationId": "Accounts_PostBatchNumbers",
         "tags": [
           "BatchNumbers"
         ],
@@ -401,10 +401,10 @@
         },
         "x-ms-examples": {
           "Create or update Numbers (Maximum).": {
-            "$ref": "./examples/Accounts_PatchBatchNumbers_MaximumSet_Gen.json"
+            "$ref": "./examples/Accounts_PostBatchNumbers_MaximumSet_Gen.json"
           },
           "Create or update Numbers (Minimum).": {
-            "$ref": "./examples/Accounts_PatchBatchNumbers_MinimumSet_Gen.json"
+            "$ref": "./examples/Accounts_PostBatchNumbers_MinimumSet_Gen.json"
           }
         }
       },
@@ -1672,7 +1672,10 @@
           },
           "x-ms-identifiers": []
         }
-      }
+      },
+      "required": [
+        "numbers"
+      ]
     },
     "BatchNumbersPutItem": {
       "type": "object",

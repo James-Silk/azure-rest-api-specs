@@ -936,8 +936,8 @@ namespace Accounts {
   @tag("BatchNumbers")
   @summary("Create or update Numbers.")
   @doc("Create or update up to 100 Numbers on the specified account. Each Number must have a UC service enabled and other configuration.")
-  @patch
-  op patchBatchNumbers(
+  @post
+  op postBatchNumbers(
     ...ApiVersionParameter,
 
     @path

@@ -1,6 +1,6 @@
 {
   "title": "Create or update Numbers (Maximum).",
-  "operationId": "Accounts_PatchBatchNumbers",
+  "operationId": "Accounts_PostBatchNumbers",
   "parameters": {
     "api-version": "2024-01-30-preview",
     "accountName": "t_v",
