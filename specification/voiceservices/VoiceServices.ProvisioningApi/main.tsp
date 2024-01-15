@@ -146,8 +146,6 @@ model PaginatedList<T> {
 
   @doc("Link to the next page (if appropriate).")
   nextLink?: string;
-
-  ...ListQueryParameters;
 }
 
 @doc("Paginated list of Account Responses")

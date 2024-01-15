@@ -1520,27 +1520,6 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
@@ -1941,27 +1920,6 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
@@ -2212,27 +2170,6 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
@@ -2385,27 +2322,6 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
@@ -2539,27 +2455,6 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
