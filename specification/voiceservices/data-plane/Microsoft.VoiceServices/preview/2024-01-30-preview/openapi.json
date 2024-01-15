@@ -1388,7 +1388,7 @@
       "type": "object",
       "description": "Details of the account.",
       "properties": {
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1437,7 +1437,7 @@
         }
       },
       "required": [
-        "accountNameString",
+        "accountName",
         "teamsOcEnabled",
         "directRoutingEnabled",
         "teamsTpmEnabled",
@@ -1448,7 +1448,7 @@
       "type": "object",
       "description": "Details of the account.",
       "properties": {
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1501,7 +1501,7 @@
       "type": "object",
       "description": "Utility model for Account names.",
       "properties": {
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1510,7 +1510,7 @@
         }
       },
       "required": [
-        "accountNameString"
+        "accountName"
       ]
     },
     "AccountResponse": {
@@ -1681,7 +1681,7 @@
       "type": "object",
       "description": "And individual phone number and configuration to be uploaded as part of a bulk request.",
       "properties": {
-        "phoneNumberString": {
+        "phoneNumber": {
           "type": "string",
           "description": "Phone number in E.164 format.",
           "minLength": 3,
@@ -1694,7 +1694,7 @@
         }
       },
       "required": [
-        "phoneNumberString",
+        "phoneNumber",
         "details"
       ]
     },
@@ -1920,7 +1920,7 @@
       "type": "object",
       "description": "Read/Write configuration for a phone number provisioned in ACG.",
       "properties": {
-        "phoneNumberString": {
+        "phoneNumber": {
           "type": "string",
           "description": "Phone number in E.164 format.",
           "minLength": 3,
@@ -1940,7 +1940,7 @@
         }
       },
       "required": [
-        "phoneNumberString",
+        "phoneNumber",
         "services",
         "customSipHeaderString"
       ]
@@ -1949,14 +1949,14 @@
       "type": "object",
       "description": "The configuration for a phone number provisioned in ACG.",
       "properties": {
-        "phoneNumberString": {
+        "phoneNumber": {
           "type": "string",
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
           "pattern": "^\\+[1-9]\\d{1,14}$"
         },
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1985,8 +1985,8 @@
         }
       },
       "required": [
-        "phoneNumberString",
-        "accountNameString",
+        "phoneNumber",
+        "accountName",
         "details",
         "status",
         "serviceProvisioningStatus"
@@ -2059,7 +2059,7 @@
       "type": "object",
       "description": "Utility model for phone numbers.",
       "properties": {
-        "phoneNumberString": {
+        "phoneNumber": {
           "type": "string",
           "description": "Phone number in E.164 format.",
           "minLength": 3,
@@ -2068,7 +2068,7 @@
         }
       },
       "required": [
-        "phoneNumberString"
+        "phoneNumber"
       ]
     },
     "PhoneNumbers": {

@@ -35,7 +35,8 @@ model AccountName {
   @minLength(1)
   @maxLength(100)
   @pattern("^([A-Za-z0-9_-]+)$")
-  accountNameString: string;
+  @projectedName("csharp", "accountNameString")
+  accountName: string;
 }
 
 /* This is not used directly, is just to simplify the code */
@@ -45,7 +46,8 @@ model PhoneNumber {
   @minLength(3)
   @maxLength(16)
   @pattern("^\\+[1-9]\\d{1,14}$")
-  phoneNumberString: string;
+  @projectedName("csharp", "phoneNumberString")
+  phoneNumber: string;
 }
 
 /* This is not used directly, is just to simplify the code */
