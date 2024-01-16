@@ -204,7 +204,7 @@
             "pattern": "^\\+[1-9]\\d{1,14}$"
           },
           {
-            "name": "if-match",
+            "name": "If-Match",
             "in": "header",
             "description": "Makes a request conditional on a matching etag.",
             "required": false,
@@ -212,7 +212,7 @@
             "x-ms-client-name": "ifMatch"
           },
           {
-            "name": "if-none-match",
+            "name": "If-None-Match",
             "in": "header",
             "description": "Makes a request conditional on a non-matching etag.",
             "required": false,
@@ -849,7 +849,7 @@
             "pattern": "^([A-Za-z0-9_-]+)$"
           },
           {
-            "name": "if-match",
+            "name": "If-Match",
             "in": "header",
             "description": "Makes a request conditional on a matching etag.",
             "required": false,
@@ -857,7 +857,7 @@
             "x-ms-client-name": "ifMatch"
           },
           {
-            "name": "if-none-match",
+            "name": "If-None-Match",
             "in": "header",
             "description": "Makes a request conditional on a non-matching etag.",
             "required": false,
@@ -949,7 +949,7 @@
             "pattern": "^([A-Za-z0-9_-]+)$"
           },
           {
-            "name": "if-match",
+            "name": "If-Match",
             "in": "header",
             "description": "Makes a request conditional on a matching etag.",
             "required": false,
@@ -957,7 +957,7 @@
             "x-ms-client-name": "ifMatch"
           },
           {
-            "name": "if-none-match",
+            "name": "If-None-Match",
             "in": "header",
             "description": "Makes a request conditional on a non-matching etag.",
             "required": false,

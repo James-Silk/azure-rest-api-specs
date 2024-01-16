@@ -830,11 +830,11 @@ namespace Account {
     @pattern("^([A-Za-z0-9_-]+)$")
     accountName: string,
 
-    @header
+    @header("If-Match")
     @doc("Makes a request conditional on a matching etag.")
     ifMatch?: string,
 
-    @header
+    @header("If-None-Match")
     @doc("Makes a request conditional on a non-matching etag.")
     ifNoneMatch?: string,
 
@@ -879,11 +879,11 @@ namespace Account {
     @pattern("^([A-Za-z0-9_-]+)$")
     accountName: string,
 
-    @header
+    @header("If-Match")
     @doc("Makes a request conditional on a matching etag.")
     ifMatch?: string,
 
-    @header
+    @header("If-None-Match")
     @doc("Makes a request conditional on a non-matching etag.")
     ifNoneMatch?: string,
 
@@ -1104,11 +1104,11 @@ namespace Accounts {
     @pattern("^\\+[1-9]\\d{1,14}$")
     phoneNumber: string,
 
-    @header
+    @header("If-Match")
     @doc("Makes a request conditional on a matching etag.")
     ifMatch?: string,
 
-    @header
+    @header("If-None-Match")
     @doc("Makes a request conditional on a non-matching etag.")
     ifNoneMatch?: string,
 
