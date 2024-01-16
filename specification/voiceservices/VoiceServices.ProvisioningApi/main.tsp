@@ -54,7 +54,7 @@ model PhoneNumber {
   @doc("Phone number in E.164 format.")
   @minLength(3)
   @maxLength(16)
-  @pattern("^\\+[1-9]\\d{1,14}$")
+  @pattern("^\\+[1-9]\\d+$")
   @projectedName("csharp", "phoneNumberString")
   phoneNumber: string;
 }
@@ -207,7 +207,7 @@ model NumberDetails {
   @doc("Phone number in E.164 format.")
   @minLength(3)
   @maxLength(16)
-  @pattern("^\\+[1-9]\\d{1,14}$")
+  @pattern("^\\+[1-9]\\d+$")
   @projectedName("csharp", "phoneNumberString")
   phoneNumber?: string;
 
@@ -1090,10 +1090,10 @@ namespace Accounts {
     accountName: string,
 
     @path
-    @doc("The phone numberto get configuration for.")
+    @doc("The phone number to get configuration for.")
     @minLength(3)
     @maxLength(16)
-    @pattern("^\\+[1-9]\\d{1,14}$")
+    @pattern("^\\+[1-9]\\d+$")
     phoneNumber: string,
   ): {
     @header contentType: "application/json";
@@ -1127,7 +1127,7 @@ namespace Accounts {
     @doc("The phone number to request details of.")
     @minLength(3)
     @maxLength(16)
-    @pattern("^\\+[1-9]\\d{1,14}$")
+    @pattern("^\\+[1-9]\\d+$")
     phoneNumber: string,
 
     @header("If-Match")
@@ -1185,7 +1185,7 @@ namespace Accounts {
     @doc("The phone number of the number to delete.")
     @minLength(3)
     @maxLength(16)
-    @pattern("^\\+[1-9]\\d{1,14}$")
+    @pattern("^\\+[1-9]\\d+$")
     phoneNumber: string,
   ): {
     @statusCode statusCode: 204;

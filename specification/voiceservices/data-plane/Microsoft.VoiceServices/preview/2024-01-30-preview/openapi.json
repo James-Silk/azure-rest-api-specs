@@ -165,12 +165,12 @@
           {
             "name": "phoneNumber",
             "in": "path",
-            "description": "The phone numberto get configuration for.",
+            "description": "The phone number to get configuration for.",
             "required": true,
             "type": "string",
             "minLength": 3,
             "maxLength": 16,
-            "pattern": "^\\+[1-9]\\d{1,14}$"
+            "pattern": "^\\+[1-9]\\d+$"
           }
         ],
         "responses": {
@@ -243,7 +243,7 @@
             "type": "string",
             "minLength": 3,
             "maxLength": 16,
-            "pattern": "^\\+[1-9]\\d{1,14}$"
+            "pattern": "^\\+[1-9]\\d+$"
           },
           {
             "name": "If-Match",
@@ -383,7 +383,7 @@
             "type": "string",
             "minLength": 3,
             "maxLength": 16,
-            "pattern": "^\\+[1-9]\\d{1,14}$"
+            "pattern": "^\\+[1-9]\\d+$"
           }
         ],
         "responses": {
@@ -2002,7 +2002,7 @@
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
+          "pattern": "^\\+[1-9]\\d+$"
         },
         "details": {
           "$ref": "#/definitions/NumberDetails",
@@ -2248,7 +2248,7 @@
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
+          "pattern": "^\\+[1-9]\\d+$"
         },
         "services": {
           "$ref": "#/definitions/NumberServices",
@@ -2272,7 +2272,7 @@
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
+          "pattern": "^\\+[1-9]\\d+$"
         },
         "accountName": {
           "type": "string",
@@ -2378,7 +2378,7 @@
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
+          "pattern": "^\\+[1-9]\\d+$"
         }
       },
       "required": [
