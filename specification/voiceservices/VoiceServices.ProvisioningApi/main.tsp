@@ -350,6 +350,10 @@ enum AssignmentStatus {
 
 @doc("Contains details when the response code indicates an error.")
 model ErrorResponse {
+  @doc("Error code for specific error that occurred.")
+  @header("x-ms-error-code")
+  code: string;
+
   @doc("The error details.")
   error: ErrorDetail;
 }
