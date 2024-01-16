@@ -1,0 +1,1093 @@
+{
+  "definitions": {
+    "AccountDetails": {
+      "additionalProperties": false,
+      "description": "Details of the account.",
+      "properties": {
+        "directRouting": {
+          "$ref": "#/definitions/TeamsDrConfig"
+        }
+      },
+      "type": "object"
+    },
+    "AccountResponse": {
+      "additionalProperties": false,
+      "description": "Details of the account as returned on a GET request.",
+      "properties": {
+        "details": {
+          "$ref": "#/definitions/AccountDetails"
+        },
+        "etag": {
+          "description": "ETag for use with If-Match headers for optimistic concurrency.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the account.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
+    "AccountsList": {
+      "additionalProperties": false,
+      "description": "Paginated list of records for an account.",
+      "properties": {
+        "nextLink": {
+          "description": "Link to the next page of results.",
+          "format": "uri",
+          "type": "string"
+        },
+        "value": {
+          "description": "List of account records.",
+          "items": {
+            "$ref": "#/definitions/AccountResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "AccountWithStatusResponse": {
+      "additionalProperties": false,
+      "description": "Details of the account and its DNS provisioning status as returned on a GET request.",
+      "properties": {
+        "details": {
+          "$ref": "#/definitions/AccountDetails"
+        },
+        "directRoutingProvisioningState": {
+          "$ref": "#/definitions/SubdomainProvisioningState"
+        },
+        "etag": {
+          "description": "ETag for use with If-Match headers for optimistic concurrency.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the account.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
+    "BatchNumbers": {
+      "additionalProperties": false,
+      "description": "Batch of numbers with configuration.",
+      "properties": {
+        "numbers": {
+          "description": "Records to use for create/replace.",
+          "items": {
+            "$ref": "#/definitions/BatchNumbersItem"
+          },
+          "maxItems": 100,
+          "type": "array"
+        }
+      },
+      "required": [
+        "numbers"
+      ],
+      "type": "object"
+    },
+    "BatchNumbersItem": {
+      "additionalProperties": false,
+      "description": "Details for a single number.",
+      "properties": {
+        "details": {
+          "$ref": "#/definitions/NumberDetails"
+        },
+        "phoneNumber": {
+          "description": "The E.164 phone number whose record should be created/replaced.",
+          "maxLength": 16,
+          "minLength": 3,
+          "pattern": "^\\+[1-9]\\d+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "details",
+        "phoneNumber"
+      ],
+      "type": "object"
+    },
+    "BatchNumbersResponse": {
+      "additionalProperties": false,
+      "description": "List of created or replaced numbers.",
+      "properties": {
+        "numbers": {
+          "description": "Details of the created/replaced numbers.",
+          "items": {
+            "$ref": "#/definitions/NumberResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "numbers"
+      ],
+      "type": "object"
+    },
+    "ErrorDetail": {
+      "properties": {
+        "additionalProperties": {
+          "description": "Additional properties that can be provided about the error."
+        },
+        "code": {
+          "description": "A machine readable error code.",
+          "type": "string"
+        },
+        "details": {
+          "description": "An array of details about specific errors that led to this error.",
+          "items": {
+            "$ref": "#/definitions/ErrorDetail"
+          },
+          "type": "array"
+        },
+        "innererror": {
+          "$ref": "#/definitions/InnerError",
+          "description": "An object containing more specific information about the error."
+        },
+        "message": {
+          "description": "A human readable representation of the error.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "The code and message for an error.",
+      "type": "object"
+    },
+    "ErrorResponse": {
+      "description": "Contains details when the response code indicates an error.",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorDetail",
+          "description": "The error details."
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "title": "Error details.",
+      "type": "object"
+    },
+    "InnerError": {
+      "properties": {
+        "code": {
+          "description": "A machine readable error code.",
+          "type": "string"
+        },
+        "innererror": {
+          "$ref": "#/definitions/InnerError",
+          "description": "Inner error details if they exist."
+        }
+      },
+      "title": "More specific information on an error object.",
+      "type": "object"
+    },
+    "NumberConfiguration": {
+      "additionalProperties": false,
+      "description": "Configuration for this number.",
+      "properties": {
+        "customSipHeader": {
+          "description": "Contents of the custom SIP header to use with this number. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length. The name of the custom header is set as part of deploying Azure Communications Gateway.",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^([A-Za-z0-9_-])+$",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NumberDetails": {
+      "additionalProperties": false,
+      "description": "Details of the number.",
+      "properties": {
+        "configuration": {
+          "$ref": "#/definitions/NumberConfiguration"
+        },
+        "services": {
+          "$ref": "#/definitions/NumberServices"
+        }
+      },
+      "required": [
+        "services"
+      ],
+      "type": "object"
+    },
+    "NumberResponse": {
+      "additionalProperties": false,
+      "description": "Details of the number as returned on a GET request.",
+      "properties": {
+        "accountName": {
+          "description": "Account name which owns this number.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "details": {
+          "$ref": "#/definitions/NumberDetails"
+        },
+        "etag": {
+          "description": "ETag for use with If-Match headers for optimistic concurrency.",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The phone number corresponding to this entry.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "accountName",
+        "details",
+        "phoneNumber"
+      ],
+      "type": "object"
+    },
+    "NumberServices": {
+      "additionalProperties": false,
+      "description": "Communications services enabled for this number.",
+      "properties": {
+        "teamsDrEnabled": {
+          "description": "Enables/disables Microsoft Teams Direct Routing for the number.",
+          "type": "boolean"
+        },
+        "teamsOcEnabled": {
+          "description": "Enables/disables Operator Connect for the number.",
+          "type": "boolean"
+        },
+        "zoomEnabled": {
+          "description": "Enables/disables Zoom for the number.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "teamsDrEnabled",
+        "teamsOcEnabled",
+        "zoomEnabled"
+      ],
+      "type": "object"
+    },
+    "NumbersList": {
+      "additionalProperties": false,
+      "description": "List of number records.",
+      "properties": {
+        "nextLink": {
+          "description": "Link to the next page of results.",
+          "format": "uri",
+          "type": "string"
+        },
+        "value": {
+          "description": "Number of records for the page.",
+          "items": {
+            "$ref": "#/definitions/NumberResponse"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "SubdomainProvisioningState": {
+      "additionalProperties": false,
+      "description": "Status of DNS configuration and the DNS TXT values for the DNS records",
+      "properties": {
+        "subdomainStatus": {
+          "$ref": "#/definitions/SubdomainProvisioningStatus"
+        },
+        "subdomainTokens": {
+          "$ref": "#/definitions/TeamsDrSubdomainTokens"
+        }
+      },
+      "required": [
+        "subdomainStatus"
+      ],
+      "type": "object"
+    },
+    "SubdomainProvisioningStatus": {
+      "description": "Status of DNS configuration. Azure Communications Gateway generates DNS records to Microsoft 365 to verify that the customer-specific domain name is associated with the correct customer tenant.",
+      "enum": [
+        "Provisioned",
+        "NotProvisioned",
+        "Inconsistent"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": true,
+        "name": "SubdomainProvisioningStatus",
+        "values": [
+          {
+            "description": "DNS state is provisioned.",
+            "name": "Provisioned",
+            "value": "Provisioned"
+          },
+          {
+            "description": "DNS state has not been provisioned.",
+            "name": "NotProvisioned",
+            "value": "NotProvisioned"
+          },
+          {
+            "description": "The programmed DNS state doesn't match the requested programming.",
+            "name": "Inconsistent",
+            "value": "Inconsistent"
+          }
+        ]
+      }
+    },
+    "TeamsDrConfig": {
+      "additionalProperties": false,
+      "description": "Account configuration relating to Microsoft Teams Direct Routing.",
+      "properties": {
+        "callScreening": {
+          "description": "Enables/disables caller ID screening for the account. Caller ID screening is enabled by default.",
+          "type": "boolean"
+        },
+        "subdomain": {
+          "description": "Customer-specific domain name label. Can only contain letters, numbers, underscores and dashes. Can be up to 10 characters in length.",
+          "maxLength": 10,
+          "minLength": 1,
+          "pattern": "^([A-Za-z0-9_-]+)$",
+          "type": "string"
+        },
+        "subdomainTokens": {
+          "$ref": "#/definitions/TeamsDrSubdomainTokens"
+        }
+      },
+      "required": [
+        "callScreening",
+        "subdomain",
+        "subdomainTokens"
+      ],
+      "type": "object"
+    },
+    "TeamsDrSubdomainTokens": {
+      "additionalProperties": false,
+      "description": "DNS TXT values (tokens) for the account.",
+      "properties": {
+        "region1Token": {
+          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^([A-Za-z0-9=_-]+)$",
+          "type": "string"
+        },
+        "region2Token": {
+          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "maxLength": 100,
+          "minLength": 1,
+          "pattern": "^([A-Za-z0-9=_-]+)$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "region1Token",
+        "region2Token"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "title": "Microsoft.VoiceServices.ACG.ProvisioningPlatform.API",
+    "version": "2023-10-01"
+  },
+  "parameters": {
+    "ApiVersionParameter": {
+      "description": "Client API version",
+      "in": "query",
+      "name": "api-version",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "client"
+    }
+  },
+  "paths": {
+    "/account/{accountName}/numbers": {
+      "get": {
+        "description": "Gets a list of the numbers assigned to the specified account. Response pagination can be controlled with a combination of the maxpagesize and skip parameters. Limit the number of records in a response with the maxpagesize parameter. Specify the starting record using the skip parameter.",
+        "operationId": "Account_ListNumbers",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "description": "Maximum number of records to include in a single response. Defaults to 200, and must not exceed 500.",
+            "format": "int32",
+            "in": "query",
+            "name": "maxpagesize",
+            "type": "integer"
+          },
+          {
+            "description": "An offset into the collection of the first record to be returned.",
+            "format": "int32",
+            "in": "query",
+            "name": "skip",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/NumbersList"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Number"
+        ],
+        "x-ms-examples": {
+          "Get account numbers.": {
+            "$ref": "./examples/GetAccountNumbers.json"
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/account/{accountName}/numbers/{phoneNumber}": {
+      "delete": {
+        "description": "Removes the specified number from the specified account.",
+        "operationId": "Number_Delete",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Phone number in E.164 format.",
+            "in": "path",
+            "maxLength": 16,
+            "minLength": 3,
+            "name": "phoneNumber",
+            "pattern": "^\\+[1-9]\\d+$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Number"
+        ],
+        "x-ms-examples": {
+          "Delete a number.": {
+            "$ref": "./examples/DeleteNumber.json"
+          }
+        }
+      },
+      "get": {
+        "description": "Gets the details of a number assigned to an account, including the services for which the number is enabled.",
+        "operationId": "Number_Get",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Phone number in E.164 format.",
+            "in": "path",
+            "maxLength": 16,
+            "minLength": 3,
+            "name": "phoneNumber",
+            "pattern": "^\\+[1-9]\\d+$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/NumberResponse"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Number"
+        ],
+        "x-ms-examples": {
+          "Get a number.": {
+            "$ref": "./examples/GetNumber.json"
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates or replaces the specified number in the specified account. In the body of the request, include the service for which this number is enabled. If the service is not specified, Operator Connect service is enabled by default. Optionally, include additional configuration for the number.",
+        "operationId": "Number_CreateOrReplace",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Phone number in E.164 format.",
+            "in": "path",
+            "maxLength": 16,
+            "minLength": 3,
+            "name": "phoneNumber",
+            "pattern": "^\\+[1-9]\\d+$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "description": "Makes a request conditional on a matching etag.",
+            "in": "header",
+            "name": "If-Match",
+            "type": "string"
+          },
+          {
+            "description": "Makes a request conditional on a non-matching etag.",
+            "in": "header",
+            "name": "If-None-Match",
+            "type": "string"
+          },
+          {
+            "description": "New details of the number to create or replace.",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NumberDetails"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/NumberResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/NumberResponse"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Number"
+        ],
+        "x-ms-examples": {
+          "Put a number.": {
+            "$ref": "./examples/PutNumber.json"
+          }
+        }
+      }
+    },
+    "/account/{accountName}/numbers:batch": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Adds or replaces between 1 and 100 numbers (inclusive) in the specified account. In the body, specify a list of phone numbers and and the corresponding details (for example, the services to enable) for each number. This operation is atomic; if any item fails, then all items fail.",
+        "operationId": "Account_CreateOrReplaceNumbers",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "description": "Batch of numbers to create or replace.",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BatchNumbers"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/BatchNumbersResponse"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "BatchNumbers"
+        ],
+        "x-ms-examples": {
+          "Batch put numbers.": {
+            "$ref": "./examples/BatchPutNumbers.json"
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "get": {
+        "description": "Gets a list of account records. An account represents a customer to which you are providing service. Response pagination can be controlled with a combination of the maxpagesize and skip parameters. Limit the number of records in a response with the maxpagesize parameter. Specify the starting record using the skip parameter.",
+        "operationId": "Accounts_List",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "description": "Maximum number of records to include in a single response. Defaults to 200, and must not exceed 500.",
+            "format": "int32",
+            "in": "query",
+            "name": "maxpagesize",
+            "type": "integer"
+          },
+          {
+            "description": "An offset into the collection of the first record to be returned.",
+            "format": "int32",
+            "in": "query",
+            "name": "skip",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AccountsList"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "x-ms-examples": {
+          "Get a list of account records.": {
+            "$ref": "./examples/GetAccounts.json"
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/accounts/{accountName}": {
+      "delete": {
+        "description": "Deletes an account (representing a customer).",
+        "operationId": "Account_Delete",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "x-ms-examples": {
+          "Delete an account": {
+            "$ref": "./examples/DeleteAccount.json"
+          }
+        }
+      },
+      "get": {
+        "description": "Gets the details of the specified account. An account represents a customer.",
+        "operationId": "Account_Get",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "default": false,
+            "description": "Additionally return the provisioning state of the backends configured for this account (e.g. DNS subdomain provisioning for Microsoft Teams Direct Routing).",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AccountWithStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "x-ms-examples": {
+          "Get information about an account": {
+            "$ref": "./examples/GetAccount.json"
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Creates or replaces the specified account, representing a customer. In the body of the request, include additional service-specific configuration. For example, for Microsoft Teams Direct Routing, specify the customer-specific subdomain label and DNS TXT values from the customer's Microsoft 365 configuration.",
+        "operationId": "Account_CreateOrReplace",
+        "parameters": [
+          {
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
+            "in": "path",
+            "maxLength": 100,
+            "minLength": 1,
+            "name": "accountName",
+            "pattern": "^([A-Za-z0-9_-]+)$",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "description": "Makes a request conditional on a matching etag.",
+            "in": "header",
+            "name": "If-Match",
+            "type": "string"
+          },
+          {
+            "description": "Makes a request conditional on a non-matching etag.",
+            "in": "header",
+            "name": "If-None-Match",
+            "type": "string"
+          },
+          {
+            "description": "New details of the account to create or replace.",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountDetails"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AccountResponse"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/AccountResponse"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "x-ms-examples": {
+          "Put new information about an account": {
+            "$ref": "./examples/PutAccount.json"
+          }
+        }
+      }
+    },
+    "/numbers": {
+      "get": {
+        "description": "Gets a list of all configured numbers across all accounts. Response pagination can be controlled with a combination of the maxpagesize and skip parameters. Limit the number of records in a response with the maxpagesize parameter. Specify the starting record using the skip parameter.",
+        "operationId": "Numbers_List",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "description": "Query information for a specific number.",
+            "in": "query",
+            "maxLength": 16,
+            "minLength": 1,
+            "name": "number",
+            "pattern": "^\\+[1-9]\\d+$",
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of records to include in a single response. Defaults to 200, and must not exceed 500.",
+            "format": "int32",
+            "in": "query",
+            "name": "maxpagesize",
+            "type": "integer"
+          },
+          {
+            "description": "An offset into the collection of the first record to be returned.",
+            "format": "int32",
+            "in": "query",
+            "name": "skip",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/NumbersList"
+            }
+          },
+          "default": {
+            "description": "An error response object.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "tags": [
+          "Numbers"
+        ],
+        "x-ms-examples": {
+          "Get all numbers configured on the provisioning platform.": {
+            "$ref": "./examples/GetNumbers.json"
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2": [
+        "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "OAuth2": {
+      "description": "Azure Active Directory OAuth2 Flow.",
+      "flow": "application",
+      "scopes": {
+        "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default": "Grants the associated roles assigned to the client application"
+      },
+      "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+      "type": "oauth2"
+    }
+  },
+  "swagger": "2.0",
+  "x-components": {}
+}

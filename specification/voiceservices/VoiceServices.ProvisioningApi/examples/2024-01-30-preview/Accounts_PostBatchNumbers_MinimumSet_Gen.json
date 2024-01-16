@@ -1,14 +1,15 @@
 {
-  "title": "Get list of Numbers on an Account (Minimum).",
-  "operationId": "Accounts_GetNumbers",
+  "title": "Create or update Numbers (Minimum).",
+  "operationId": "Accounts_PostBatchNumbers",
   "parameters": {
     "api-version": "2024-01-30-preview",
-    "accountName": "1_HC"
+    "accountName": "A__o__",
+    "body": {}
   },
   "responses": {
     "200": {
       "body": {
-        "value": [
+        "numbers": [
           {
             "phoneNumberString": "+917988691580257",
             "accountNameString": "_4P7",
@@ -25,11 +26,15 @@
             "status": "TPM Assigned",
             "serviceProvisioningStatus": "Pending"
           }
-        ],
-        "numberOfRecords": 10
+        ]
       }
     },
-    "204": {},
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
     "404": {
       "body": {
         "code": "fqhqzxpxd",

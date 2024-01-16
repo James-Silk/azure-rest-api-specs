@@ -3,16 +3,24 @@ import "@typespec/rest";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 
+import "./customAuth.tsp";
+
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using Azure.Core;
 
+using Custom.Auth;
+
 @service({
   title: "Microsoft.VoiceServices.ProvisioningAPI",
 })
+@useAuth(
+  Oauth2<[
+    "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default"
+  ]>
+)
 @versioned(Microsoft.Voiceservices.Versions)
-
 namespace Microsoft.Voiceservices;
 
 @doc("The Microsoft.Voiceservices service versions.")
@@ -36,7 +44,8 @@ model AccountName {
   @minLength(1)
   @maxLength(100)
   @pattern("^([A-Za-z0-9_-]+)$")
-  accountNameString: string;
+  @projectedName("csharp", "accountNameString")
+  accountName: string;
 }
 
 /* This is not used directly, is just to simplify the code */
@@ -45,8 +54,9 @@ model PhoneNumber {
   @doc("Phone number in E.164 format.")
   @minLength(3)
   @maxLength(16)
-  @pattern("^\\+[1-9]\\d{1,14}$")
-  phoneNumberString: string;
+  @pattern("^\\+[1-9]\\d+$")
+  @projectedName("csharp", "phoneNumberString")
+  phoneNumber: string;
 }
 
 /* This is not used directly, is just to simplify the code */
@@ -56,18 +66,24 @@ model CustomSipHeader {
   @minLength(1)
   @maxLength(100)
   @pattern("^([A-Za-z0-9_-])+$")
-  customSipHeaderString: string;
+  @projectedName("csharp", "customSipHeaderString")
+  customSipHeader?: string;
 }
 
 @doc("A list of phone numbers")
 model PhoneNumbers {
   @doc("Array containing a list of phone numbers.")
-  numbers: PhoneNumber[]
+  numbers: PhoneNumber[];
 }
 
 @doc("Details of the account.")
 model AccountDetails {
-  ...AccountName;
+  @doc("Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.")
+  @minLength(1)
+  @maxLength(100)
+  @pattern("^([A-Za-z0-9_-]+)$")
+  @projectedName("csharp", "accountNameString")
+  accountName?: string;
 
   @doc("The opaque correlator id for this account.")
   correlatorId?: string;
@@ -80,25 +96,25 @@ model AccountDetails {
   teamsCommonConfig?: TeamsCommonConfig;
 
   @doc("Indicates that Teams Operator Connect (OC) is enabled for this account.")
-  teamsOcEnabled: boolean;
+  teamsOcEnabled?: boolean;
 
   @doc("Teams Operator Connect (OC) Account Configuration. Only accepted if OC is enabled.")
   teamsOcConfig?: TeamsOcConfig;
 
   @doc("Indicates that Teams Direct Routing (DR) enabled for this account.")
-  directRoutingEnabled: boolean;
+  directRoutingEnabled?: boolean;
 
   @doc("Teams Direct Routing (DR) Account Configuration. Only accepted if DR is enabled.")
   directRouting?: TeamsDrConfig;
 
   @doc("Indicates that Teams Phone Mobile (TPM) is enabled for this account.")
-  teamsTpmEnabled: boolean;
+  teamsTpmEnabled?: boolean;
 
   @doc("Teams Phone Mobile (TPM) Account Configuration. Only accepted if TPM is enabled.")
   teamsTpmConfig?: TeamsTpmConfig;
 
   @doc("Indicates that Zoom is enabled for this account.")
-  zoomEnabled: boolean;
+  zoomEnabled?: boolean;
 
   @doc("Zoom Account Configuration. Only accepted if Zoom is enabled.")
   zoomConfig?: ZoomConfig;
@@ -120,19 +136,19 @@ model AccountResponse {
   directRoutingProvisioningState?: TeamsDrSubdomainProvisioningState;
 
   @doc("Count of Teams Operator Connect subscribers for this account.")
-  teamsOcSubCount: int64;
+  teamsOcSubCount?: int64;
 
   @doc("Count of Teams Direct Routing subscribers for this account.")
-  teamsDrSubCount: int64;
+  teamsDrSubCount?: int64;
 
   @doc("Count of Teams Phone Mobile subscribers for this account.")
-  teamsTpmSubCount: int64;
+  teamsTpmSubCount?: int64;
 
   @doc("Count of Zoom subscribers for this account.")
-  zoomSubCount: int64;
+  zoomSubCount?: int64;
 
   @doc("Status of syncing changes to this object to relevant backend services.")
-  serviceProvisioningStatus: ServiceProvisioningState;
+  serviceProvisioningStatus?: ServiceProvisioningState;
 
   @doc("Error messages where syncing to UC services has failed.")
   serviceProvisioningErrors?: ServiceProvisioningErrors;
@@ -143,16 +159,14 @@ model PaginatedList<T> {
   value: T[];
 
   @doc("The number of records returned for this page.")
-  numberOfRecords: int32;
+  numberOfRecords?: int32;
 
   @doc("Link to the next page (if appropriate).")
   nextLink?: string;
-
-  ...ListQueryParameters
 }
 
 @doc("Paginated list of Account Responses")
-model AccountResponsePaginatedList is PaginatedList<AccountResponse>{}
+model AccountResponsePaginatedList is PaginatedList<AccountResponse>;
 
 @doc("List of phone numbers to be uploaded to an account via a PUT request.")
 model BatchNumbersPut {
@@ -173,7 +187,7 @@ model BatchNumbersPutItem {
 model BatchNumbersDelete {
   @doc("The list of number to delete. At most 100 can be deleted in one request.")
   @maxItems(100)
-  numbers: PhoneNumber[]
+  numbers: PhoneNumber[];
 }
 
 @doc("The response to a bulk upload of phone numbers.")
@@ -182,14 +196,26 @@ model BatchNumbersResponse {
   numbers: NumberResponse[];
 }
 
+@doc("Configuration for this number.")
+model NumberConfiguration {
+  ...CustomSipHeader;
+}
+
 @doc("Read/Write configuration for a phone number provisioned in ACG.")
 model NumberDetails {
-  ...PhoneNumber;
+  // Cannot use the spread operator here, as this field is not required
+  @doc("Phone number in E.164 format.")
+  @minLength(3)
+  @maxLength(16)
+  @pattern("^\\+[1-9]\\d+$")
+  @projectedName("csharp", "phoneNumberString")
+  phoneNumber?: string;
 
   @doc("Configuration for the individual UC services for this number.")
   services: NumberServices;
 
-  ...CustomSipHeader;
+  @doc("Configuration for this number.")
+  configuration?: NumberConfiguration;
 
   // TODO: finalise requirements on this.
   // @doc("Preferred region for this number.")
@@ -205,20 +231,20 @@ model NumberResponse {
   details: NumberDetails;
 
   @doc("The assigment status of this phone number.")
-  status: AssignmentStatus;
+  status?: AssignmentStatus;
 
   @doc("ETag for use with If-Match headers for optimistic concurrency.")
   etag?: string;
 
   @doc("The provisioning state of the phone number with any UC services.")
-  serviceProvisioningStatus: ServiceProvisioningState;
+  serviceProvisioningStatus?: ServiceProvisioningState;
 
   @doc("Any error details returned by UC services.")
   serviceProvisioningErrors?: ServiceProvisioningErrors;
 }
 
 @doc("A paginated list of phone number configuration.")
-model NumberResponsePaginatedList is PaginatedList<NumberResponse>{}
+model NumberResponsePaginatedList is PaginatedList<NumberResponse>;
 
 @doc("Configuration for UC services for a phone number.")
 model NumberServices {
@@ -235,7 +261,7 @@ model NumberServices {
   teamsTpmNumberConfig?: TeamsTpmNumberConfig;
 
   @doc("Indicates that Teams Phone Mobile (TPM) is enabled for this number.")
-  teamsTpmEnabled: boolean;
+  teamsTpmEnabled?: boolean;
 
   @doc("Indicates that Zoom is enabled for this number.")
   zoomEnabled: boolean;
@@ -260,7 +286,7 @@ model TeamsCapabilities {
 }
 
 @doc("Paginated list of Teams capabilities.")
-model TeamsCapabilitiesPaginatedList is PaginatedList<TeamsCapabilities>{}
+model TeamsCapabilitiesPaginatedList is PaginatedList<TeamsCapabilities>;
 
 @doc("Phone number configuration for Teams OC phone numbers.")
 model TeamsOcNumberConfig {
@@ -325,7 +351,17 @@ enum AssignmentStatus {
   OcUnassigned: "OC Unassigned",
 
   @doc("The phone number is not configured for use with any services that require the number to be assigned to a user.")
-  NA: "Not Applicable"
+  NA: "Not Applicable",
+}
+
+@doc("Contains details when the response code indicates an error.")
+model ErrorResponse {
+  @doc("Error code for specific error that occurred.")
+  @header("x-ms-error-code")
+  code: string;
+
+  @doc("The error details.")
+  error: ErrorDetail;
 }
 
 @doc("The code and message for an error.")
@@ -340,7 +376,11 @@ model ErrorDetail {
   details?: ErrorDetail[];
 
   @doc("An object containing more specific information about the error.")
-  innerError?: InnerError;
+  innererror?: InnerError;
+
+  // Allow additional properties
+  @doc("Additional properties that can be provided about the error.")
+  additionalProperties?: {};
 }
 
 @doc("More specific information on an error object.")
@@ -349,7 +389,8 @@ model InnerError {
   code?: string;
 
   @doc("Inner error details if they exist.")
-  innerErrorString: string;
+  @projectedName("csharp", "innerErrorString")
+  innererror?: string;
 }
 
 @doc("A provisioning error reported from a UC service.")
@@ -364,31 +405,10 @@ model ProvisioningError {
   message?: string;
 }
 
-@doc("Error details returned from the Teams API for queries passed through to Teams.")
-model OcErrorDetails {
-  @doc("The error code returned from the Teams API")
-  code: string;
-
-  @doc("The error message returned from the Teams API")
-  message?: string;
-}
-
-@doc("Error body to return when requests to Teams API fails")
-model OcErrorResponseBody {
-  @doc("The error code returned by the Teams API.")
-  code: string;
-
-  @doc("The error message returned by the Teams API.")
-  message: string;
-
-  @doc("The error details returned from the Teams API.")
-  details: OcErrorDetails[];
-}
-
 @doc("List of all service provisioning errors for the object.")
 model ServiceProvisioningErrors {
   @doc("List of service provisioning errors.")
-  allErrors: ProvisioningError[]
+  allErrors: ProvisioningError[];
 }
 
 @doc("The provisioning states of an object on any relevant UC service.")
@@ -433,16 +453,22 @@ enum DNSProvisioningState {
   NotProvisioned: "NotProvisioned",
 
   @doc("The DNS provisioning state Inconsistent.")
-  Inconsistent: "Inconsistent"
+  Inconsistent: "Inconsistent",
 }
 
 @doc("DNS TXT value for the region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.")
 model TeamsDrSubdomainTokens {
-  @doc("The DNS TXT value of the first region.")
-  region1Token: TeamsDrSubdomainToken;
+  @doc("DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.")
+  @minLength(1)
+  @maxLength(100)
+  @pattern("^([A-Za-z0-9=_-]+)$")
+  region1Token: string;
 
-  @doc("The DNS TXT value of the second region.")
-  region2Token: TeamsDrSubdomainToken;
+  @doc("DNS TXT value for the second region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.")
+  @minLength(1)
+  @maxLength(100)
+  @pattern("^([A-Za-z0-9=_-]+)$")
+  region2Token: string;
 }
 
 @doc("A DNS TXT value.")
@@ -457,10 +483,10 @@ model TeamsDrSubdomainToken {
 @doc("The provisioning state of Teams Direct Routing domains.")
 model TeamsDrSubdomainProvisioningState {
   @doc("The DNS TXT values of the domains the state relates to.")
-  teamsDrSubdomainTokens?: TeamsDrSubdomainTokens;
+  subdomainTokens?: TeamsDrSubdomainTokens;
 
   @doc("The provisioning status of the domains.")
-  teamsDrSubdomainStatus: DNSProvisioningState;
+  subdomainStatus: DNSProvisioningState;
 }
 
 @doc("The UC service supported by the API.")
@@ -503,19 +529,16 @@ model TeamsSyncEnabled {
 }
 
 @doc("Account onfiguration specific to Teams Operator Connect.")
-model TeamsOcConfig {
-}
+model TeamsOcConfig {}
 
 @doc("Account configuration specific to Teams Phone Mobile.")
-model TeamsTpmConfig {
-}
+model TeamsTpmConfig {}
 
 @doc("Account configuration specific to Zoom.")
-model ZoomConfig {
-}
+model ZoomConfig {}
 
 @doc("A paginated list of RFI details.")
-model RfiDetailsPaginatedList is PaginatedList<RfiDetails>{}
+model RfiDetailsPaginatedList is PaginatedList<RfiDetails>;
 
 @doc("Details of an RFI.")
 model RfiDetails {
@@ -559,7 +582,7 @@ enum RFIStatus {
   Suspended,
 
   @doc("The RFI is removed.")
-  Removed
+  Removed,
 }
 
 @doc("Contact details for an individual.")
@@ -579,7 +602,7 @@ model ContactDetails {
   companyName?: string;
 
   @doc("The company size of the contact detail.")
-  companySize?: string
+  companySize?: string;
 }
 
 @doc("Details of a customer relationship.")
@@ -595,7 +618,7 @@ model CustomerRelationship {
 }
 
 @doc("A paginated list of civic addresses available for Teams OC or TPM users.")
-model TeamsCivicAddressPaginatedList is PaginatedList<TeamsCivicAddress>{}
+model TeamsCivicAddressPaginatedList is PaginatedList<TeamsCivicAddress>;
 
 @doc("A civic address available for Teams OC or TPM users.")
 model TeamsCivicAddress {
@@ -677,7 +700,7 @@ enum ValidationStatus {
   NotValidated,
 
   @doc("The civic address is validated.")
-  Validated
+  Validated,
 }
 
 @doc("A location used by Team Operator Connect or Teams Phone Mobile phone numbers.")
@@ -759,6 +782,8 @@ op accounts(...FilterListQueryParameters, ...ApiVersionParameter): {
   @statusCode statusCode: 204;
 } | {
   @statusCode statusCode: 500;
+  @header contentType: "application/json";
+  @body error: ErrorResponse;
 };
 
 @route("/accounts/teamstenant/{tenantId}")
@@ -770,13 +795,18 @@ op getAccountsByTenant(
 
   @path
   @doc("The Teams tenant ID")
-  tenantId: string): {
+  tenantId: string,
+): {
   @header contentType: "application/json";
   @body success: AccountResponsePaginatedList;
 } | {
   @statusCode statusCode: 404;
+  @header contentType: "application/json";
+  @body error: ErrorResponse;
 } | {
-  @statusCode statusCode: 500
+  @statusCode statusCode: 500;
+  @header contentType: "application/json";
+  @body error: ErrorResponse;
 };
 
 @route("/accounts/{accountName}")
@@ -795,10 +825,10 @@ namespace Account {
     @pattern("^([A-Za-z0-9_-]+)$")
     accountName: string,
 
-    @path
+    @query
     @doc("Additionally return the provisioning state of the backends configured for this account (e.g. DNS subdomain provisioning for Microsoft Teams Direct Routing).")
-    status: boolean): {
-
+    status?: boolean = false,
+  ): {
     @header
     contentType: "application/json";
 
@@ -806,9 +836,11 @@ namespace Account {
   } | {
     @statusCode statusCode: 404;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @put
@@ -824,11 +856,11 @@ namespace Account {
     @pattern("^([A-Za-z0-9_-]+)$")
     accountName: string,
 
-    @header
+    @header("If-Match")
     @doc("Makes a request conditional on a matching etag.")
     ifMatch?: string,
 
-    @header
+    @header("If-None-Match")
     @doc("Makes a request conditional on a non-matching etag.")
     ifNoneMatch?: string,
 
@@ -838,20 +870,27 @@ namespace Account {
 
     @body
     @doc("The details of the account to create")
-    body: AccountDetails): {
-    @header contentType: "application/json";
-    @body success: AccountResponse;
-  } | {
-    @statusCode statusCode: 201;
-    @header contentType: "application/json";
-    @body body: AccountResponse;
-  } | {
-    @statusCode statusCode: 400 | 404 | 409 | 412;
-    @header contentType: "application/json";
-    @body error: ErrorDetail;
-  } | {
-    @statusCode statusCode: 500;
-  };
+    body: AccountDetails,
+  ):
+    | {
+        @header contentType: "application/json";
+        @body success: AccountResponse;
+      }
+    | {
+        @statusCode statusCode: 201;
+        @header contentType: "application/json";
+        @body body: AccountResponse;
+      }
+    | {
+        @statusCode statusCode: 400 | 404 | 409 | 412;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      }
+    | {
+        @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      };
 
   @patch
   @summary("Create or update Account.")
@@ -866,11 +905,11 @@ namespace Account {
     @pattern("^([A-Za-z0-9_-]+)$")
     accountName: string,
 
-    @header
+    @header("If-Match")
     @doc("Makes a request conditional on a matching etag.")
     ifMatch?: string,
 
-    @header
+    @header("If-None-Match")
     @doc("Makes a request conditional on a non-matching etag.")
     ifNoneMatch?: string,
 
@@ -880,20 +919,27 @@ namespace Account {
 
     @body
     @doc("The Account to create or update.")
-    account: AccountDetails): {
-    @header contentType: "application/json";
-    @body success: AccountResponse;
-  } | {
-    @statusCode statusCode: 201;
-    @header contentType: "application/json";
-    @body success: AccountResponse;
-  } | {
-    @statusCode statusCode: 400 | 404 | 409 | 412;
-    @header contentType: "application/json";
-    @body error: ErrorDetail;
-  } | {
-    @statusCode statusCode: 500;
-  };
+    account: AccountDetails,
+  ):
+    | {
+        @header contentType: "application/json";
+        @body success: AccountResponse;
+      }
+    | {
+        @statusCode statusCode: 201;
+        @header contentType: "application/json";
+        @body success: AccountResponse;
+      }
+    | {
+        @statusCode statusCode: 400 | 404 | 409 | 412;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      }
+    | {
+        @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      };
 
   @delete
   @summary("Delete Account.")
@@ -905,28 +951,33 @@ namespace Account {
     @doc("Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.")
     @minLength(1)
     @maxLength(100)
-    @pattern("^([A-Za-z0-9_-]+)$") accountName: string,
+    @pattern("^([A-Za-z0-9_-]+)$")
+    accountName: string,
+
     @doc("Indicates if all subscribers under the account should also be deleted.")
-    @query deleteAllSubs?: boolean
-  ) : {
+    @query
+    deleteAllSubs?: boolean,
+  ): {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
 @route("/account/{accountName}")
 namespace Accounts {
-  @route("/numbers/batch")
+  @route("/numbers:batch")
   @tag("BatchNumbers")
   @summary("Create or update Numbers.")
   @doc("Create or update up to 100 Numbers on the specified account. Each Number must have a UC service enabled and other configuration.")
-  @patch
-  op patchBatchNumbers(
+  @post
+  op postBatchNumbers(
     ...ApiVersionParameter,
 
     @path
@@ -942,20 +993,22 @@ namespace Accounts {
 
     @body
     @doc("The numbers to upload in a batch.")
-    body: BatchNumbersPut
-  ) : {
+    body: BatchNumbersPut,
+  ): {
     @header contentType: "application/json";
     @body success: BatchNumbersResponse;
   } | {
     @statusCode statusCode: 400 | 404;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
-    @statusCode statusCode: 500
+    @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @delete
-  @route("/numbers/batch")
+  @route("/numbers:batch")
   @tag("BatchNumbers")
   @summary("Delete batches of numbers.")
   @doc("Delete up to 100 numbers on the specified account.")
@@ -975,15 +1028,17 @@ namespace Accounts {
 
     @body
     @doc("The phone numbers to delete.")
-    account: BatchNumbersDelete
-  ) : {
-    @statusCode statusCode: 204
+    account: BatchNumbersDelete,
+  ): {
+    @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
-    @statusCode statusCode: 500
+    @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/numbers")
@@ -997,19 +1052,28 @@ namespace Accounts {
     @doc("Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.")
     @minLength(1)
     @maxLength(100)
-    @pattern("^([A-Za-z0-9_-]+)$") accountName: string,
-    ...FilterListQueryParameters): {
-    @header contentType: "application/json";
-    @body success: NumberResponsePaginatedList;
-  } | {
-    @statusCode statusCode: 204;
-  } | {
-    @statusCode statusCode: 404;
-    @header contentType: "application/json";
-    @body error: ErrorDetail;
-  } | {
-    @statusCode statusCode: 500;
-  };
+    @pattern("^([A-Za-z0-9_-]+)$")
+    accountName: string,
+
+    ...FilterListQueryParameters,
+  ):
+    | {
+        @header contentType: "application/json";
+        @body success: NumberResponsePaginatedList;
+      }
+    | {
+        @statusCode statusCode: 204;
+      }
+    | {
+        @statusCode statusCode: 404;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      }
+    | {
+        @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      };
 
   @route("/numbers/{phoneNumber}")
   @tag("Number")
@@ -1026,19 +1090,22 @@ namespace Accounts {
     accountName: string,
 
     @path
-    @doc("The phone numberto get configuration for.")
+    @doc("The phone number to get configuration for.")
     @minLength(3)
     @maxLength(16)
-    @pattern("^\\+[1-9]\\d{1,14}$")
-    phoneNumber: string): {
+    @pattern("^\\+[1-9]\\d+$")
+    phoneNumber: string,
+  ): {
     @header contentType: "application/json";
     @body success: NumberResponse;
   } | {
     @statusCode statusCode: 404;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/numbers/{phoneNumber}")
@@ -1060,14 +1127,14 @@ namespace Accounts {
     @doc("The phone number to request details of.")
     @minLength(3)
     @maxLength(16)
-    @pattern("^\\+[1-9]\\d{1,14}$")
+    @pattern("^\\+[1-9]\\d+$")
     phoneNumber: string,
 
-    @header
+    @header("If-Match")
     @doc("Makes a request conditional on a matching etag.")
     ifMatch?: string,
 
-    @header
+    @header("If-None-Match")
     @doc("Makes a request conditional on a non-matching etag.")
     ifNoneMatch?: string,
 
@@ -1077,20 +1144,27 @@ namespace Accounts {
 
     @body
     @doc("The number details for the phone numbers to upload.")
-    body: NumberDetails): {
-      @header contentType: "application/json";
-      @body success: NumberResponse;
-  } | {
-    @header contentType: "application/json";
-    @body success: NumberResponse;
-    @statusCode statusCode: 201
-  } | {
-    @statusCode statusCode: 400 | 404 | 409 | 412;
-    @header contentType: "application/json";
-    @body error: ErrorDetail;
-  } | {
-    @statusCode statusCode: 500;
-  };
+    body: NumberDetails,
+  ):
+    | {
+        @header contentType: "application/json";
+        @body success: NumberResponse;
+      }
+    | {
+        @header contentType: "application/json";
+        @body success: NumberResponse;
+        @statusCode statusCode: 201;
+      }
+    | {
+        @statusCode statusCode: 400 | 404 | 409 | 412;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      }
+    | {
+        @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      };
 
   @route("/numbers/{phoneNumber}")
   @tag("Number")
@@ -1111,15 +1185,18 @@ namespace Accounts {
     @doc("The phone number of the number to delete.")
     @minLength(3)
     @maxLength(16)
-    @pattern("^\\+[1-9]\\d{1,14}$")
-    phoneNumber: string) : {
-      @statusCode statusCode: 204;
+    @pattern("^\\+[1-9]\\d+$")
+    phoneNumber: string,
+  ): {
+    @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/teams/civic-address/{civicAddressId}")
@@ -1138,23 +1215,29 @@ namespace Accounts {
     @path
     @doc("The ID of the civic address to retrieve.")
     civicAddressId: string,
-  ) : {
-    @header contentType: "application/json";
-    @body success: TeamsCivicAddress;
-  } | {
-    @statusCode statusCode: 400;
-    @header contentType: "application/json";
-    @body error: OcErrorResponseBody;
-  } | {
-    @statusCode statusCode: 404;
-  } | {
-    @statusCode statusCode: 500;
-    @header contentType: "application/json";
-    @body error: OcErrorResponseBody;
-  };
+  ):
+    | {
+        @header contentType: "application/json";
+        @body success: TeamsCivicAddress;
+      }
+    | {
+        @statusCode statusCode: 400;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      }
+    | {
+        @statusCode statusCode: 404;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      }
+    | {
+        @statusCode statusCode: 500;
+        @header contentType: "application/json";
+        @body error: ErrorResponse;
+      };
 
   @route("/teams/civic-addresses")
-  @summary("Get a list of Civic Addresses.",)
+  @summary("Get a list of Civic Addresses.")
   @doc("Get a list of Civic Addresses and its associated locations for a specific Account. The returned list is paginated.")
   op getTeamsCivicAddresses(
     ...ApiVersionParameter,
@@ -1166,18 +1249,18 @@ namespace Accounts {
     @pattern("^([A-Za-z0-9_-]+)$")
     accountName: string,
 
-    ...FilterListQueryParameters
-  ) : {
+    ...FilterListQueryParameters,
+  ): {
     @header contentType: "application/json";
     @body success: TeamsCivicAddressPaginatedList;
   } | {
     @statusCode statusCode: 400;
     @header contentType: "application/json";
-    @body error: OcErrorResponseBody;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
     @header contentType: "application/json";
-    @body error: OcErrorResponseBody;
+    @body error: ErrorResponse;
   };
 
   @route("/teams/capabilities/")
@@ -1200,14 +1283,18 @@ namespace Accounts {
 
     @body
     @doc("The phone numbers to query capabilities for.")
-    phoneNumbers: PhoneNumbers
+    phoneNumbers: PhoneNumbers,
   ): {
     @header contentType: "application/json";
     @body success: TeamsCapabilitiesPaginatedList;
   } | {
     @statusCode statusCode: 400 | 404;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/teams/sync")
@@ -1231,12 +1318,17 @@ namespace Accounts {
 
     @body
     @doc("JSON to indicate if data should by synced to Teams.")
-    body: TeamsSyncEnabled): {
+    body: TeamsSyncEnabled,
+  ): {
     @statusCode statusCode: 200;
   } | {
     @statusCode statusCode: 400;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
@@ -1254,13 +1346,16 @@ namespace NumbersFromAllAccounts {
     @pattern("^\\+[1-9]\\d+$")
     @minLength(1)
     @maxLength(16)
-    number: string): {
+    number: string,
+  ): {
     @header contentType: "application/json";
     @body success: NumberResponsePaginatedList;
   } | {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
@@ -1276,13 +1371,16 @@ namespace Rfis {
     @doc("The Teams product context for the RFIs.")
     productContext?: string,
 
-    ...FilterListQueryParameters): {
+    ...FilterListQueryParameters,
+  ): {
     @header contentType: "application/json";
     @body success: RfiDetailsPaginatedList;
   } | {
     @statusCode statusCode: 204;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }
 
@@ -1303,8 +1401,12 @@ namespace Rfi {
     @body success: RfiDetails;
   } | {
     @statusCode statusCode: 404;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 
   @route("/customer-relationship")
@@ -1324,15 +1426,17 @@ namespace Rfi {
 
     @body
     @doc("The customer relationship to insert.")
-    body: CustomerRelationship
-  ) : {
+    body: CustomerRelationship,
+  ): {
     @header contentType: "application/json";
     @body success: CustomerRelationship;
   } | {
     @statusCode statusCode: 400 | 404 | 409 | 412;
     @header contentType: "application/json";
-    @body error: ErrorDetail;
+    @body error: ErrorResponse;
   } | {
     @statusCode statusCode: 500;
+    @header contentType: "application/json";
+    @body error: ErrorResponse;
   };
 }

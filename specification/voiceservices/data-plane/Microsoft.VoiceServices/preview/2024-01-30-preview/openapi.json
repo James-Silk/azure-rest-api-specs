@@ -18,6 +18,24 @@
   "consumes": [
     "application/json"
   ],
+  "security": [
+    {
+      "Oauth2": [
+        "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "Oauth2": {
+      "type": "oauth2",
+      "description": "The Azure Active Directory OAuth2 Flow",
+      "flow": "application",
+      "scopes": {
+        "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default": ""
+      },
+      "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token"
+    }
+  },
   "tags": [
     {
       "name": "Account"
@@ -90,18 +108,33 @@
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_GetNumbers_MaximumSet_Gen": {
+          "Get list of Numbers on an Account (Maximum).": {
             "$ref": "./examples/Accounts_GetNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_GetNumbers_MinimumSet_Gen": {
+          "Get list of Numbers on an Account (Minimum).": {
             "$ref": "./examples/Accounts_GetNumbers_MinimumSet_Gen.json"
           }
         }
@@ -132,12 +165,12 @@
           {
             "name": "phoneNumber",
             "in": "path",
-            "description": "The phone numberto get configuration for.",
+            "description": "The phone number to get configuration for.",
             "required": true,
             "type": "string",
             "minLength": 3,
             "maxLength": 16,
-            "pattern": "^\\+[1-9]\\d{1,14}$"
+            "pattern": "^\\+[1-9]\\d+$"
           }
         ],
         "responses": {
@@ -150,18 +183,33 @@
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_GetPhoneNumbers_MaximumSet_Gen": {
+          "Get a Number (Maximum).": {
             "$ref": "./examples/Accounts_GetPhoneNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_GetPhoneNumbers_MinimumSet_Gen": {
+          "Get a Number (Minimum).": {
             "$ref": "./examples/Accounts_GetPhoneNumbers_MinimumSet_Gen.json"
           }
         }
@@ -195,10 +243,10 @@
             "type": "string",
             "minLength": 3,
             "maxLength": 16,
-            "pattern": "^\\+[1-9]\\d{1,14}$"
+            "pattern": "^\\+[1-9]\\d+$"
           },
           {
-            "name": "if-match",
+            "name": "If-Match",
             "in": "header",
             "description": "Makes a request conditional on a matching etag.",
             "required": false,
@@ -206,7 +254,7 @@
             "x-ms-client-name": "ifMatch"
           },
           {
-            "name": "if-none-match",
+            "name": "If-None-Match",
             "in": "header",
             "description": "Makes a request conditional on a non-matching etag.",
             "required": false,
@@ -239,36 +287,69 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_PutPhoneNumbers_MaximumSet_Gen": {
+          "Create or update a Number (Maximum).": {
             "$ref": "./examples/Accounts_PutPhoneNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_PutPhoneNumbers_MinimumSet_Gen": {
+          "Create or update a Number (Minimum).": {
             "$ref": "./examples/Accounts_PutPhoneNumbers_MinimumSet_Gen.json"
           }
         }
@@ -302,7 +383,7 @@
             "type": "string",
             "minLength": 3,
             "maxLength": 16,
-            "pattern": "^\\+[1-9]\\d{1,14}$"
+            "pattern": "^\\+[1-9]\\d+$"
           }
         ],
         "responses": {
@@ -312,26 +393,41 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_DeletePhoneNumbers_MaximumSet_Gen": {
+          "Delete Number (Maximum).": {
             "$ref": "./examples/Accounts_DeletePhoneNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_DeletePhoneNumbers_MinimumSet_Gen": {
+          "Delete Number (Minimum).": {
             "$ref": "./examples/Accounts_DeletePhoneNumbers_MinimumSet_Gen.json"
           }
         }
       }
     },
-    "/account/{accountName}/numbers/batch": {
-      "patch": {
-        "operationId": "Accounts_PatchBatchNumbers",
+    "/account/{accountName}/numbers:batch": {
+      "post": {
+        "operationId": "Accounts_PostBatchNumbers",
         "tags": [
           "BatchNumbers"
         ],
@@ -371,25 +467,46 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_PatchBatchNumbers_MaximumSet_Gen": {
-            "$ref": "./examples/Accounts_PatchBatchNumbers_MaximumSet_Gen.json"
+          "Create or update Numbers (Maximum).": {
+            "$ref": "./examples/Accounts_PostBatchNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_PatchBatchNumbers_MinimumSet_Gen": {
-            "$ref": "./examples/Accounts_PatchBatchNumbers_MinimumSet_Gen.json"
+          "Create or update Numbers (Minimum).": {
+            "$ref": "./examples/Accounts_PostBatchNumbers_MinimumSet_Gen.json"
           }
         }
       },
@@ -431,18 +548,33 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_DeleteBatchNumbers_MaximumSet_Gen": {
+          "Delete batches of numbers (Maximum).": {
             "$ref": "./examples/Accounts_DeleteBatchNumbers_MaximumSet_Gen.json"
           },
-          "Accounts_DeleteBatchNumbers_MinimumSet_Gen": {
+          "Delete batches of numbers (Minimum).": {
             "$ref": "./examples/Accounts_DeleteBatchNumbers_MinimumSet_Gen.json"
           }
         }
@@ -485,20 +617,47 @@
             }
           },
           "400": {
-            "description": "The server could not understand the request due to invalid syntax."
+            "description": "The server could not understand the request due to invalid syntax.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_GetCapabilities_MaximumSet_Gen": {
+          "Get the list of usages available (Maximum).": {
             "$ref": "./examples/Accounts_GetCapabilities_MaximumSet_Gen.json"
           },
-          "Accounts_GetCapabilities_MinimumSet_Gen": {
+          "Get the list of usages available (Minimum).": {
             "$ref": "./examples/Accounts_GetCapabilities_MinimumSet_Gen.json"
           }
         }
@@ -541,24 +700,45 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           },
           "500": {
             "description": "Server error",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           }
         },
         "x-ms-examples": {
-          "Accounts_GetTeamsCivicAddress_MaximumSet_Gen": {
+          "Get a Civic Address (Maximum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddress_MaximumSet_Gen.json"
           },
-          "Accounts_GetTeamsCivicAddress_MinimumSet_Gen": {
+          "Get a Civic Address (Minimum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddress_MinimumSet_Gen.json"
           }
         }
@@ -606,21 +786,33 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
             "description": "Server error",
             "schema": {
-              "$ref": "#/definitions/OcErrorResponseBody"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           }
         },
         "x-ms-examples": {
-          "Accounts_GetTeamsCivicAddresses_MaximumSet_Gen": {
+          "Get a list of Civic Addresses (Maximum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddresses_MaximumSet_Gen.json"
           },
-          "Accounts_GetTeamsCivicAddresses_MinimumSet_Gen": {
+          "Get a list of Civic Addresses (Minimum).": {
             "$ref": "./examples/Accounts_GetTeamsCivicAddresses_MinimumSet_Gen.json"
           }
         }
@@ -663,17 +855,35 @@
             "description": "The request has succeeded."
           },
           "400": {
-            "description": "The server could not understand the request due to invalid syntax."
+            "description": "The server could not understand the request due to invalid syntax.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_SetTeamsSync_MaximumSet_Gen": {
+          "Enable or disable syncing of provisioned data to Teams (Maximum).": {
             "$ref": "./examples/Accounts_SetTeamsSync_MaximumSet_Gen.json"
           },
-          "Accounts_SetTeamsSync_MinimumSet_Gen": {
+          "Enable or disable syncing of provisioned data to Teams (Minimum).": {
             "$ref": "./examples/Accounts_SetTeamsSync_MinimumSet_Gen.json"
           }
         }
@@ -715,20 +925,100 @@
             "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Accounts_MaximumSet_Gen": {
+          "Get list of Accounts (Maximum).": {
             "$ref": "./examples/Accounts_MaximumSet_Gen.json"
           },
-          "Accounts_MinimumSet_Gen": {
+          "Get list of Accounts (Minimum).": {
             "$ref": "./examples/Accounts_MinimumSet_Gen.json"
           }
         }
       }
     },
     "/accounts/{accountName}": {
+      "get": {
+        "operationId": "Account_Get",
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get Account.",
+        "description": "Get details of a specific Account using its Name. An Account represents an Enterprise or collection of users.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^([A-Za-z0-9_-]+)$"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Additionally return the provisioning state of the backends configured for this account (e.g. DNS subdomain provisioning for Microsoft Teams Direct Routing).",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AccountResponse"
+            }
+          },
+          "404": {
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Account (Maximum).": {
+            "$ref": "./examples/Account_Get_MaximumSet_Gen.json"
+          },
+          "Get Account (Minimum).": {
+            "$ref": "./examples/Account_Get_MinimumSet_Gen.json"
+          }
+        }
+      },
       "put": {
         "operationId": "Account_Put",
         "tags": [
@@ -751,7 +1041,7 @@
             "pattern": "^([A-Za-z0-9_-]+)$"
           },
           {
-            "name": "if-match",
+            "name": "If-Match",
             "in": "header",
             "description": "Makes a request conditional on a matching etag.",
             "required": false,
@@ -759,7 +1049,7 @@
             "x-ms-client-name": "ifMatch"
           },
           {
-            "name": "if-none-match",
+            "name": "If-None-Match",
             "in": "header",
             "description": "Makes a request conditional on a non-matching etag.",
             "required": false,
@@ -792,36 +1082,69 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Account_Put_MaximumSet_Gen": {
+          "Create or update Account (Maximum).": {
             "$ref": "./examples/Account_Put_MaximumSet_Gen.json"
           },
-          "Account_Put_MinimumSet_Gen": {
+          "Create or update Account (Minimum).": {
             "$ref": "./examples/Account_Put_MinimumSet_Gen.json"
           }
         }
@@ -848,7 +1171,7 @@
             "pattern": "^([A-Za-z0-9_-]+)$"
           },
           {
-            "name": "if-match",
+            "name": "If-Match",
             "in": "header",
             "description": "Makes a request conditional on a matching etag.",
             "required": false,
@@ -856,7 +1179,7 @@
             "x-ms-client-name": "ifMatch"
           },
           {
-            "name": "if-none-match",
+            "name": "If-None-Match",
             "in": "header",
             "description": "Makes a request conditional on a non-matching etag.",
             "required": false,
@@ -889,36 +1212,69 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Account_Patch_MaximumSet_Gen": {
+          "Create or update Account (Maximum).": {
             "$ref": "./examples/Account_Patch_MaximumSet_Gen.json"
           },
-          "Account_Patch_MinimumSet_Gen": {
+          "Create or update Account (Minimum).": {
             "$ref": "./examples/Account_Patch_MinimumSet_Gen.json"
           }
         }
@@ -959,76 +1315,34 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Account_Delete_MaximumSet_Gen": {
+          "Delete Account (Maximum).": {
             "$ref": "./examples/Account_Delete_MaximumSet_Gen.json"
           },
-          "Account_Delete_MinimumSet_Gen": {
+          "Delete Account (Minimum).": {
             "$ref": "./examples/Account_Delete_MinimumSet_Gen.json"
-          }
-        }
-      }
-    },
-    "/accounts/{accountName}/{status}": {
-      "get": {
-        "operationId": "Account_Get",
-        "tags": [
-          "Account"
-        ],
-        "summary": "Get Account.",
-        "description": "Get details of a specific Account using its Name. An Account represents an Enterprise or collection of users.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/ApiVersionParameter"
-          },
-          {
-            "name": "accountName",
-            "in": "path",
-            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
-            "required": true,
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 100,
-            "pattern": "^([A-Za-z0-9_-]+)$"
-          },
-          {
-            "name": "status",
-            "in": "path",
-            "description": "Additionally return the provisioning state of the backends configured for this account (e.g. DNS subdomain provisioning for Microsoft Teams Direct Routing).",
-            "required": true,
-            "type": "boolean"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded.",
-            "schema": {
-              "$ref": "#/definitions/AccountResponse"
-            }
-          },
-          "404": {
-            "description": "The server cannot find the requested resource.",
-            "schema": {
-              "$ref": "#/definitions/ErrorDetail"
-            }
-          },
-          "500": {
-            "description": "Server error"
-          }
-        },
-        "x-ms-examples": {
-          "Account_Get_MaximumSet_Gen": {
-            "$ref": "./examples/Account_Get_MaximumSet_Gen.json"
-          },
-          "Account_Get_MinimumSet_Gen": {
-            "$ref": "./examples/Account_Get_MinimumSet_Gen.json"
           }
         }
       }
@@ -1061,17 +1375,35 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "GetAccountsByTenant_MaximumSet_Gen": {
+          "Get accounts with with Teams services using the specified Tenant ID (Maximum).": {
             "$ref": "./examples/GetAccountsByTenant_MaximumSet_Gen.json"
           },
-          "GetAccountsByTenant_MinimumSet_Gen": {
+          "Get accounts with with Teams services using the specified Tenant ID (Minimum).": {
             "$ref": "./examples/GetAccountsByTenant_MinimumSet_Gen.json"
           }
         }
@@ -1123,14 +1455,23 @@
             "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "NumbersFromAllAccounts_ListAllNumbers_MaximumSet_Gen": {
+          "Get list of numbers (Maximum).": {
             "$ref": "./examples/NumbersFromAllAccounts_ListAllNumbers_MaximumSet_Gen.json"
           },
-          "NumbersFromAllAccounts_ListAllNumbers_MinimumSet_Gen": {
+          "Get list of numbers (Minimum).": {
             "$ref": "./examples/NumbersFromAllAccounts_ListAllNumbers_MinimumSet_Gen.json"
           }
         }
@@ -1164,17 +1505,35 @@
             }
           },
           "404": {
-            "description": "The server cannot find the requested resource."
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Rfi_GetRfiByTenant_MaximumSet_Gen": {
+          "Get an RFI by tenant ID (Maximum).": {
             "$ref": "./examples/Rfi_GetRfiByTenant_MaximumSet_Gen.json"
           },
-          "Rfi_GetRfiByTenant_MinimumSet_Gen": {
+          "Get an RFI by tenant ID (Minimum).": {
             "$ref": "./examples/Rfi_GetRfiByTenant_MinimumSet_Gen.json"
           }
         }
@@ -1219,36 +1578,69 @@
           "400": {
             "description": "The server could not understand the request due to invalid syntax.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "404": {
             "description": "The server cannot find the requested resource.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "409": {
             "description": "The request conflicts with the current state of the server.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "412": {
             "description": "Precondition failed.",
             "schema": {
-              "$ref": "#/definitions/ErrorDetail"
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Rfi_UpdateCustomerRelationship_MaximumSet_Gen": {
+          "Update the Customer Relationship (Maximum).": {
             "$ref": "./examples/Rfi_UpdateCustomerRelationship_MaximumSet_Gen.json"
           },
-          "Rfi_UpdateCustomerRelationship_MinimumSet_Gen": {
+          "Update the Customer Relationship (Minimum).": {
             "$ref": "./examples/Rfi_UpdateCustomerRelationship_MinimumSet_Gen.json"
           }
         }
@@ -1297,14 +1689,23 @@
             "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "type": "string",
+                "description": "Error code for specific error that occurred."
+              }
+            }
           }
         },
         "x-ms-examples": {
-          "Rfis_GetRfis_MaximumSet_Gen": {
+          "Get list of Requests for Information (Consents) (Maximum).": {
             "$ref": "./examples/Rfis_GetRfis_MaximumSet_Gen.json"
           },
-          "Rfis_GetRfis_MinimumSet_Gen": {
+          "Get list of Requests for Information (Consents) (Minimum).": {
             "$ref": "./examples/Rfis_GetRfis_MinimumSet_Gen.json"
           }
         }
@@ -1316,7 +1717,7 @@
       "type": "object",
       "description": "Details of the account.",
       "properties": {
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1363,20 +1764,13 @@
           "$ref": "#/definitions/ZoomConfig",
           "description": "Zoom Account Configuration. Only accepted if Zoom is enabled."
         }
-      },
-      "required": [
-        "accountNameString",
-        "teamsOcEnabled",
-        "directRoutingEnabled",
-        "teamsTpmEnabled",
-        "zoomEnabled"
-      ]
+      }
     },
     "AccountDetailsUpdate": {
       "type": "object",
       "description": "Details of the account.",
       "properties": {
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1429,7 +1823,7 @@
       "type": "object",
       "description": "Utility model for Account names.",
       "properties": {
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1438,7 +1832,7 @@
         }
       },
       "required": [
-        "accountNameString"
+        "accountName"
       ]
     },
     "AccountResponse": {
@@ -1492,12 +1886,7 @@
         }
       },
       "required": [
-        "name",
-        "teamsOcSubCount",
-        "teamsDrSubCount",
-        "teamsTpmSubCount",
-        "zoomSubCount",
-        "serviceProvisioningStatus"
+        "name"
       ]
     },
     "AccountResponsePaginatedList": {
@@ -1520,32 +1909,10 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "AssignmentStatus": {
@@ -1621,18 +1988,21 @@
           },
           "x-ms-identifiers": []
         }
-      }
+      },
+      "required": [
+        "numbers"
+      ]
     },
     "BatchNumbersPutItem": {
       "type": "object",
       "description": "And individual phone number and configuration to be uploaded as part of a bulk request.",
       "properties": {
-        "phoneNumberString": {
+        "phoneNumber": {
           "type": "string",
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
+          "pattern": "^\\+[1-9]\\d+$"
         },
         "details": {
           "$ref": "#/definitions/NumberDetails",
@@ -1640,7 +2010,7 @@
         }
       },
       "required": [
-        "phoneNumberString",
+        "phoneNumber",
         "details"
       ]
     },
@@ -1697,17 +2067,14 @@
       "type": "object",
       "description": "Utility model for custom SIP headers.",
       "properties": {
-        "customSipHeaderString": {
+        "customSipHeader": {
           "type": "string",
           "description": "Contents of the custom SIP header to use with this number. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length. The name of the custom header is set as part of deploying Azure Communications Gateway.",
           "minLength": 1,
           "maxLength": 100,
           "pattern": "^([A-Za-z0-9_-])+$"
         }
-      },
-      "required": [
-        "customSipHeaderString"
-      ]
+      }
     },
     "CustomerRelationship": {
       "type": "object",
@@ -1782,14 +2149,31 @@
           },
           "x-ms-identifiers": []
         },
-        "innerError": {
+        "innererror": {
           "$ref": "#/definitions/InnerError",
           "description": "An object containing more specific information about the error."
+        },
+        "additionalProperties": {
+          "type": "object",
+          "description": "Additional properties that can be provided about the error."
         }
       },
       "required": [
         "code",
         "message"
+      ]
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "description": "Contains details when the response code indicates an error.",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorDetail",
+          "description": "The error details."
+        }
+      },
+      "required": [
+        "error"
       ]
     },
     "InnerError": {
@@ -1800,14 +2184,11 @@
           "type": "string",
           "description": "A machine readable error code."
         },
-        "innerErrorString": {
+        "innererror": {
           "type": "string",
           "description": "Inner error details if they exist."
         }
-      },
-      "required": [
-        "innerErrorString"
-      ]
+      }
     },
     "Location": {
       "type": "object",
@@ -1845,47 +2226,55 @@
         "civicAddressId"
       ]
     },
-    "NumberDetails": {
+    "NumberConfiguration": {
       "type": "object",
-      "description": "Read/Write configuration for a phone number provisioned in ACG.",
+      "description": "Configuration for this number.",
       "properties": {
-        "phoneNumberString": {
-          "type": "string",
-          "description": "Phone number in E.164 format.",
-          "minLength": 3,
-          "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
-        },
-        "services": {
-          "$ref": "#/definitions/NumberServices",
-          "description": "Configuration for the individual UC services for this number."
-        },
-        "customSipHeaderString": {
+        "customSipHeader": {
           "type": "string",
           "description": "Contents of the custom SIP header to use with this number. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length. The name of the custom header is set as part of deploying Azure Communications Gateway.",
           "minLength": 1,
           "maxLength": 100,
           "pattern": "^([A-Za-z0-9_-])+$"
         }
+      }
+    },
+    "NumberDetails": {
+      "type": "object",
+      "description": "Read/Write configuration for a phone number provisioned in ACG.",
+      "properties": {
+        "phoneNumber": {
+          "type": "string",
+          "description": "Phone number in E.164 format.",
+          "minLength": 3,
+          "maxLength": 16,
+          "pattern": "^\\+[1-9]\\d+$"
+        },
+        "services": {
+          "$ref": "#/definitions/NumberServices",
+          "description": "Configuration for the individual UC services for this number."
+        },
+        "configuration": {
+          "$ref": "#/definitions/NumberConfiguration",
+          "description": "Configuration for this number."
+        }
       },
       "required": [
-        "phoneNumberString",
-        "services",
-        "customSipHeaderString"
+        "services"
       ]
     },
     "NumberResponse": {
       "type": "object",
       "description": "The configuration for a phone number provisioned in ACG.",
       "properties": {
-        "phoneNumberString": {
+        "phoneNumber": {
           "type": "string",
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
+          "pattern": "^\\+[1-9]\\d+$"
         },
-        "accountNameString": {
+        "accountName": {
           "type": "string",
           "description": "Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.",
           "minLength": 1,
@@ -1914,11 +2303,9 @@
         }
       },
       "required": [
-        "phoneNumberString",
-        "accountNameString",
-        "details",
-        "status",
-        "serviceProvisioningStatus"
+        "phoneNumber",
+        "accountName",
+        "details"
       ]
     },
     "NumberResponsePaginatedList": {
@@ -1941,32 +2328,10 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "NumberServices": {
@@ -2001,68 +2366,23 @@
       "required": [
         "teamsOcEnabled",
         "teamsDrEnabled",
-        "teamsTpmEnabled",
         "zoomEnabled"
-      ]
-    },
-    "OcErrorDetails": {
-      "type": "object",
-      "description": "Error details returned from the Teams API for queries passed through to Teams.",
-      "properties": {
-        "code": {
-          "type": "string",
-          "description": "The error code returned from the Teams API"
-        },
-        "message": {
-          "type": "string",
-          "description": "The error message returned from the Teams API"
-        }
-      },
-      "required": [
-        "code"
-      ]
-    },
-    "OcErrorResponseBody": {
-      "type": "object",
-      "description": "Error body to return when requests to Teams API fails",
-      "properties": {
-        "code": {
-          "type": "string",
-          "description": "The error code returned by the Teams API."
-        },
-        "message": {
-          "type": "string",
-          "description": "The error message returned by the Teams API."
-        },
-        "details": {
-          "type": "array",
-          "description": "The error details returned from the Teams API.",
-          "items": {
-            "$ref": "#/definitions/OcErrorDetails"
-          },
-          "x-ms-identifiers": []
-        }
-      },
-      "required": [
-        "code",
-        "message",
-        "details"
       ]
     },
     "PhoneNumber": {
       "type": "object",
       "description": "Utility model for phone numbers.",
       "properties": {
-        "phoneNumberString": {
+        "phoneNumber": {
           "type": "string",
           "description": "Phone number in E.164 format.",
           "minLength": 3,
           "maxLength": 16,
-          "pattern": "^\\+[1-9]\\d{1,14}$"
+          "pattern": "^\\+[1-9]\\d+$"
         }
       },
       "required": [
-        "phoneNumberString"
+        "phoneNumber"
       ]
     },
     "PhoneNumbers": {
@@ -2212,32 +2532,10 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "ServiceEnum": {
@@ -2385,32 +2683,10 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "TeamsCivicAddress": {
@@ -2539,32 +2815,10 @@
         "nextLink": {
           "type": "string",
           "description": "Link to the next page (if appropriate)."
-        },
-        "skip": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The number of result items to skip.",
-          "minimum": 0
-        },
-        "maxPageSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The maximum number of result items per page.",
-          "default": 200,
-          "minimum": 1,
-          "maximum": 500
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32",
-          "description": "The page number of the current page.",
-          "default": 1,
-          "minimum": 1
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "TeamsCommonConfig": {
@@ -2666,17 +2920,17 @@
       "type": "object",
       "description": "The provisioning state of Teams Direct Routing domains.",
       "properties": {
-        "teamsDrSubdomainTokens": {
+        "subdomainTokens": {
           "$ref": "#/definitions/TeamsDrSubdomainTokens",
           "description": "The DNS TXT values of the domains the state relates to."
         },
-        "teamsDrSubdomainStatus": {
+        "subdomainStatus": {
           "$ref": "#/definitions/DNSProvisioningState",
           "description": "The provisioning status of the domains."
         }
       },
       "required": [
-        "teamsDrSubdomainStatus"
+        "subdomainStatus"
       ]
     },
     "TeamsDrSubdomainToken": {
@@ -2695,30 +2949,23 @@
         "token"
       ]
     },
-    "TeamsDrSubdomainTokenUpdate": {
-      "type": "object",
-      "description": "A DNS TXT value.",
-      "properties": {
-        "token": {
-          "type": "string",
-          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
-          "minLength": 1,
-          "maxLength": 100,
-          "pattern": "^([A-Za-z0-9=_-]+)$"
-        }
-      }
-    },
     "TeamsDrSubdomainTokens": {
       "type": "object",
       "description": "DNS TXT value for the region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
       "properties": {
         "region1Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainToken",
-          "description": "The DNS TXT value of the first region."
+          "type": "string",
+          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         },
         "region2Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainToken",
-          "description": "The DNS TXT value of the second region."
+          "type": "string",
+          "description": "DNS TXT value for the second region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         }
       },
       "required": [
@@ -2731,12 +2978,18 @@
       "description": "DNS TXT value for the region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
       "properties": {
         "region1Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainTokenUpdate",
-          "description": "The DNS TXT value of the first region."
+          "type": "string",
+          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         },
         "region2Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainTokenUpdate",
-          "description": "The DNS TXT value of the second region."
+          "type": "string",
+          "description": "DNS TXT value for the second region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         }
       }
     },
