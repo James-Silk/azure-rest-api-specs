@@ -799,9 +799,9 @@ namespace Account {
     @pattern("^([A-Za-z0-9_-]+)$")
     accountName: string,
 
-    @path
+    @query
     @doc("Additionally return the provisioning state of the backends configured for this account (e.g. DNS subdomain provisioning for Microsoft Teams Direct Routing).")
-    status: boolean,
+    status?: boolean = false,
   ): {
     @header
     contentType: "application/json";

@@ -768,6 +768,65 @@
       }
     },
     "/accounts/{accountName}": {
+      "get": {
+        "operationId": "Account_Get",
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get Account.",
+        "description": "Get details of a specific Account using its Name. An Account represents an Enterprise or collection of users.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^([A-Za-z0-9_-]+)$"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Additionally return the provisioning state of the backends configured for this account (e.g. DNS subdomain provisioning for Microsoft Teams Direct Routing).",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AccountResponse"
+            }
+          },
+          "404": {
+            "description": "The server cannot find the requested resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Account (Maximum).": {
+            "$ref": "./examples/Account_Get_MaximumSet_Gen.json"
+          },
+          "Get Account (Minimum).": {
+            "$ref": "./examples/Account_Get_MinimumSet_Gen.json"
+          }
+        }
+      },
       "put": {
         "operationId": "Account_Put",
         "tags": [
@@ -1020,66 +1079,6 @@
           },
           "Delete Account (Minimum).": {
             "$ref": "./examples/Account_Delete_MinimumSet_Gen.json"
-          }
-        }
-      }
-    },
-    "/accounts/{accountName}/{status}": {
-      "get": {
-        "operationId": "Account_Get",
-        "tags": [
-          "Account"
-        ],
-        "summary": "Get Account.",
-        "description": "Get details of a specific Account using its Name. An Account represents an Enterprise or collection of users.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/ApiVersionParameter"
-          },
-          {
-            "name": "accountName",
-            "in": "path",
-            "description": "Name of the account. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
-            "required": true,
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 100,
-            "pattern": "^([A-Za-z0-9_-]+)$"
-          },
-          {
-            "name": "status",
-            "in": "path",
-            "description": "Additionally return the provisioning state of the backends configured for this account (e.g. DNS subdomain provisioning for Microsoft Teams Direct Routing).",
-            "required": true,
-            "type": "boolean"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded.",
-            "schema": {
-              "$ref": "#/definitions/AccountResponse"
-            }
-          },
-          "404": {
-            "description": "The server cannot find the requested resource.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        },
-        "x-ms-examples": {
-          "Get Account (Maximum).": {
-            "$ref": "./examples/Account_Get_MaximumSet_Gen.json"
-          },
-          "Get Account (Minimum).": {
-            "$ref": "./examples/Account_Get_MinimumSet_Gen.json"
           }
         }
       }
