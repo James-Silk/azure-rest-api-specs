@@ -25,5 +25,5 @@ model CustomTokenAuthFlow<Scopes extends string[], TokenUrl extends string>
 @doc("The Azure Active Directory OAuth2 Flow")
 model Oauth2<
     Scopes extends string[],
-    TokenUrl extends string = "https://login.microsoftonline.com/common/oauth2/token"
+    TokenUrl extends string = "https://login.microsoftonline.com/common/oauth2/v2.0/token"
 > is OAuth2Auth<[CustomTokenAuthFlow<Scopes, TokenUrl>]>;

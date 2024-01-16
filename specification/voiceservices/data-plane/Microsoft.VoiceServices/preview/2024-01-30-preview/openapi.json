@@ -33,7 +33,7 @@
       "scopes": {
         "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default": ""
       },
-      "tokenUrl": "https://login.microsoftonline.com/common/oauth2/token"
+      "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token"
     }
   },
   "tags": [
