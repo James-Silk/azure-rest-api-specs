@@ -2583,17 +2583,17 @@
       "type": "object",
       "description": "The provisioning state of Teams Direct Routing domains.",
       "properties": {
-        "teamsDrSubdomainTokens": {
+        "subdomainTokens": {
           "$ref": "#/definitions/TeamsDrSubdomainTokens",
           "description": "The DNS TXT values of the domains the state relates to."
         },
-        "teamsDrSubdomainStatus": {
+        "subdomainStatus": {
           "$ref": "#/definitions/DNSProvisioningState",
           "description": "The provisioning status of the domains."
         }
       },
       "required": [
-        "teamsDrSubdomainStatus"
+        "subdomainStatus"
       ]
     },
     "TeamsDrSubdomainToken": {
@@ -2612,30 +2612,23 @@
         "token"
       ]
     },
-    "TeamsDrSubdomainTokenUpdate": {
-      "type": "object",
-      "description": "A DNS TXT value.",
-      "properties": {
-        "token": {
-          "type": "string",
-          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
-          "minLength": 1,
-          "maxLength": 100,
-          "pattern": "^([A-Za-z0-9=_-]+)$"
-        }
-      }
-    },
     "TeamsDrSubdomainTokens": {
       "type": "object",
       "description": "DNS TXT value for the region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
       "properties": {
         "region1Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainToken",
-          "description": "The DNS TXT value of the first region."
+          "type": "string",
+          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         },
         "region2Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainToken",
-          "description": "The DNS TXT value of the second region."
+          "type": "string",
+          "description": "DNS TXT value for the second region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         }
       },
       "required": [
@@ -2648,12 +2641,18 @@
       "description": "DNS TXT value for the region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
       "properties": {
         "region1Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainTokenUpdate",
-          "description": "The DNS TXT value of the first region."
+          "type": "string",
+          "description": "DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         },
         "region2Token": {
-          "$ref": "#/definitions/TeamsDrSubdomainTokenUpdate",
-          "description": "The DNS TXT value of the second region."
+          "type": "string",
+          "description": "DNS TXT value for the second region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^([A-Za-z0-9=_-]+)$"
         }
       }
     },

@@ -438,11 +438,17 @@ enum DNSProvisioningState {
 
 @doc("DNS TXT value for the region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.")
 model TeamsDrSubdomainTokens {
-  @doc("The DNS TXT value of the first region.")
-  region1Token: TeamsDrSubdomainToken;
+  @doc("DNS TXT value for the first region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.")
+  @minLength(1)
+  @maxLength(100)
+  @pattern("^([A-Za-z0-9=_-]+)$")
+  region1Token: string;
 
-  @doc("The DNS TXT value of the second region.")
-  region2Token: TeamsDrSubdomainToken;
+  @doc("DNS TXT value for the second region, as provided by the customer from their Microsoft 365 Admin Center. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length.")
+  @minLength(1)
+  @maxLength(100)
+  @pattern("^([A-Za-z0-9=_-]+)$")
+  region2Token: string;
 }
 
 @doc("A DNS TXT value.")
@@ -457,10 +463,10 @@ model TeamsDrSubdomainToken {
 @doc("The provisioning state of Teams Direct Routing domains.")
 model TeamsDrSubdomainProvisioningState {
   @doc("The DNS TXT values of the domains the state relates to.")
-  teamsDrSubdomainTokens?: TeamsDrSubdomainTokens;
+  subdomainTokens?: TeamsDrSubdomainTokens;
 
   @doc("The provisioning status of the domains.")
-  teamsDrSubdomainStatus: DNSProvisioningState;
+  subdomainStatus: DNSProvisioningState;
 }
 
 @doc("The UC service supported by the API.")
