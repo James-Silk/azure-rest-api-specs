@@ -18,6 +18,24 @@
   "consumes": [
     "application/json"
   ],
+  "security": [
+    {
+      "Oauth2": [
+        "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "Oauth2": {
+      "type": "oauth2",
+      "description": "The Azure Active Directory OAuth2 Flow",
+      "flow": "application",
+      "scopes": {
+        "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default": ""
+      },
+      "tokenUrl": "https://login.microsoftonline.com/common/oauth2/token"
+    }
+  },
   "tags": [
     {
       "name": "Account"

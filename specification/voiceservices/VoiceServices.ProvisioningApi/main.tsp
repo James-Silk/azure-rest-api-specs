@@ -3,14 +3,23 @@ import "@typespec/rest";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 
+import "./customAuth.tsp";
+
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using Azure.Core;
 
+using Custom.Auth;
+
 @service({
   title: "Microsoft.VoiceServices.ProvisioningAPI",
 })
+@useAuth(
+  Oauth2<[
+    "https://func-voiceservice-rp-prod-eastuseuap.azurewebsites.net/.default"
+  ]>
+)
 @versioned(Microsoft.Voiceservices.Versions)
 namespace Microsoft.Voiceservices;
 
