@@ -196,6 +196,11 @@ model BatchNumbersResponse {
   numbers: NumberResponse[];
 }
 
+@doc("Configuration for this number.")
+model NumberConfiguration {
+  ...CustomSipHeader;
+}
+
 @doc("Read/Write configuration for a phone number provisioned in ACG.")
 model NumberDetails {
   // Cannot use the spread operator here, as this field is not required
@@ -209,7 +214,8 @@ model NumberDetails {
   @doc("Configuration for the individual UC services for this number.")
   services: NumberServices;
 
-  ...CustomSipHeader;
+  @doc("Configuration for this number.")
+  configuration?: NumberConfiguration;
 
   // TODO: finalise requirements on this.
   // @doc("Preferred region for this number.")
