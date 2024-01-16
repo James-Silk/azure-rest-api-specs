@@ -58,7 +58,7 @@ model CustomSipHeader {
   @maxLength(100)
   @pattern("^([A-Za-z0-9_-])+$")
   @projectedName("csharp", "customSipHeaderString")
-  customSipHeader: string;
+  customSipHeader?: string;
 }
 
 @doc("A list of phone numbers")
@@ -69,7 +69,12 @@ model PhoneNumbers {
 
 @doc("Details of the account.")
 model AccountDetails {
-  ...AccountName;
+  @doc("Name of the account. Can only contain letters, numbers, underscores and dashes, and is case-sensitive. Can be up to 100 characters in length.")
+  @minLength(1)
+  @maxLength(100)
+  @pattern("^([A-Za-z0-9_-]+)$")
+  @projectedName("csharp", "accountNameString")
+  accountName?: string;
 
   @doc("The opaque correlator id for this account.")
   correlatorId?: string;
@@ -82,25 +87,25 @@ model AccountDetails {
   teamsCommonConfig?: TeamsCommonConfig;
 
   @doc("Indicates that Teams Operator Connect (OC) is enabled for this account.")
-  teamsOcEnabled: boolean;
+  teamsOcEnabled?: boolean;
 
   @doc("Teams Operator Connect (OC) Account Configuration. Only accepted if OC is enabled.")
   teamsOcConfig?: TeamsOcConfig;
 
   @doc("Indicates that Teams Direct Routing (DR) enabled for this account.")
-  directRoutingEnabled: boolean;
+  directRoutingEnabled?: boolean;
 
   @doc("Teams Direct Routing (DR) Account Configuration. Only accepted if DR is enabled.")
   directRouting?: TeamsDrConfig;
 
   @doc("Indicates that Teams Phone Mobile (TPM) is enabled for this account.")
-  teamsTpmEnabled: boolean;
+  teamsTpmEnabled?: boolean;
 
   @doc("Teams Phone Mobile (TPM) Account Configuration. Only accepted if TPM is enabled.")
   teamsTpmConfig?: TeamsTpmConfig;
 
   @doc("Indicates that Zoom is enabled for this account.")
-  zoomEnabled: boolean;
+  zoomEnabled?: boolean;
 
   @doc("Zoom Account Configuration. Only accepted if Zoom is enabled.")
   zoomConfig?: ZoomConfig;
@@ -122,19 +127,19 @@ model AccountResponse {
   directRoutingProvisioningState?: TeamsDrSubdomainProvisioningState;
 
   @doc("Count of Teams Operator Connect subscribers for this account.")
-  teamsOcSubCount: int64;
+  teamsOcSubCount?: int64;
 
   @doc("Count of Teams Direct Routing subscribers for this account.")
-  teamsDrSubCount: int64;
+  teamsDrSubCount?: int64;
 
   @doc("Count of Teams Phone Mobile subscribers for this account.")
-  teamsTpmSubCount: int64;
+  teamsTpmSubCount?: int64;
 
   @doc("Count of Zoom subscribers for this account.")
-  zoomSubCount: int64;
+  zoomSubCount?: int64;
 
   @doc("Status of syncing changes to this object to relevant backend services.")
-  serviceProvisioningStatus: ServiceProvisioningState;
+  serviceProvisioningStatus?: ServiceProvisioningState;
 
   @doc("Error messages where syncing to UC services has failed.")
   serviceProvisioningErrors?: ServiceProvisioningErrors;
@@ -145,7 +150,7 @@ model PaginatedList<T> {
   value: T[];
 
   @doc("The number of records returned for this page.")
-  numberOfRecords: int32;
+  numberOfRecords?: int32;
 
   @doc("Link to the next page (if appropriate).")
   nextLink?: string;
@@ -184,7 +189,13 @@ model BatchNumbersResponse {
 
 @doc("Read/Write configuration for a phone number provisioned in ACG.")
 model NumberDetails {
-  ...PhoneNumber;
+  // Cannot use the spread operator here, as this field is not required
+  @doc("Phone number in E.164 format.")
+  @minLength(3)
+  @maxLength(16)
+  @pattern("^\\+[1-9]\\d{1,14}$")
+  @projectedName("csharp", "phoneNumberString")
+  phoneNumber?: string;
 
   @doc("Configuration for the individual UC services for this number.")
   services: NumberServices;
@@ -205,13 +216,13 @@ model NumberResponse {
   details: NumberDetails;
 
   @doc("The assigment status of this phone number.")
-  status: AssignmentStatus;
+  status?: AssignmentStatus;
 
   @doc("ETag for use with If-Match headers for optimistic concurrency.")
   etag?: string;
 
   @doc("The provisioning state of the phone number with any UC services.")
-  serviceProvisioningStatus: ServiceProvisioningState;
+  serviceProvisioningStatus?: ServiceProvisioningState;
 
   @doc("Any error details returned by UC services.")
   serviceProvisioningErrors?: ServiceProvisioningErrors;
@@ -235,7 +246,7 @@ model NumberServices {
   teamsTpmNumberConfig?: TeamsTpmNumberConfig;
 
   @doc("Indicates that Teams Phone Mobile (TPM) is enabled for this number.")
-  teamsTpmEnabled: boolean;
+  teamsTpmEnabled?: boolean;
 
   @doc("Indicates that Zoom is enabled for this number.")
   zoomEnabled: boolean;

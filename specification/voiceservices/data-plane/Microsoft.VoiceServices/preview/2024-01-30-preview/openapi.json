@@ -1435,14 +1435,7 @@
           "$ref": "#/definitions/ZoomConfig",
           "description": "Zoom Account Configuration. Only accepted if Zoom is enabled."
         }
-      },
-      "required": [
-        "accountName",
-        "teamsOcEnabled",
-        "directRoutingEnabled",
-        "teamsTpmEnabled",
-        "zoomEnabled"
-      ]
+      }
     },
     "AccountDetailsUpdate": {
       "type": "object",
@@ -1564,12 +1557,7 @@
         }
       },
       "required": [
-        "name",
-        "teamsOcSubCount",
-        "teamsDrSubCount",
-        "teamsTpmSubCount",
-        "zoomSubCount",
-        "serviceProvisioningStatus"
+        "name"
       ]
     },
     "AccountResponsePaginatedList": {
@@ -1595,8 +1583,7 @@
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "AssignmentStatus": {
@@ -1751,17 +1738,14 @@
       "type": "object",
       "description": "Utility model for custom SIP headers.",
       "properties": {
-        "customSipHeaderString": {
+        "customSipHeader": {
           "type": "string",
           "description": "Contents of the custom SIP header to use with this number. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length. The name of the custom header is set as part of deploying Azure Communications Gateway.",
           "minLength": 1,
           "maxLength": 100,
           "pattern": "^([A-Za-z0-9_-])+$"
         }
-      },
-      "required": [
-        "customSipHeaderString"
-      ]
+      }
     },
     "CustomerRelationship": {
       "type": "object",
@@ -1931,7 +1915,7 @@
           "$ref": "#/definitions/NumberServices",
           "description": "Configuration for the individual UC services for this number."
         },
-        "customSipHeaderString": {
+        "customSipHeader": {
           "type": "string",
           "description": "Contents of the custom SIP header to use with this number. Can only contain letters, numbers, underscores and dashes. Can be up to 100 characters in length. The name of the custom header is set as part of deploying Azure Communications Gateway.",
           "minLength": 1,
@@ -1940,9 +1924,7 @@
         }
       },
       "required": [
-        "phoneNumber",
-        "services",
-        "customSipHeaderString"
+        "services"
       ]
     },
     "NumberResponse": {
@@ -1987,9 +1969,7 @@
       "required": [
         "phoneNumber",
         "accountName",
-        "details",
-        "status",
-        "serviceProvisioningStatus"
+        "details"
       ]
     },
     "NumberResponsePaginatedList": {
@@ -2015,8 +1995,7 @@
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "NumberServices": {
@@ -2051,7 +2030,6 @@
       "required": [
         "teamsOcEnabled",
         "teamsDrEnabled",
-        "teamsTpmEnabled",
         "zoomEnabled"
       ]
     },
@@ -2221,8 +2199,7 @@
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "ServiceEnum": {
@@ -2373,8 +2350,7 @@
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "TeamsCivicAddress": {
@@ -2506,8 +2482,7 @@
         }
       },
       "required": [
-        "value",
-        "numberOfRecords"
+        "value"
       ]
     },
     "TeamsCommonConfig": {
