@@ -370,7 +370,7 @@ model ErrorDetail {
   details?: ErrorDetail[];
 
   @doc("An object containing more specific information about the error.")
-  innerError?: InnerError;
+  innererror?: InnerError;
 
   // Allow additional properties
   @doc("Additional properties that can be provided about the error.")
@@ -383,7 +383,8 @@ model InnerError {
   code?: string;
 
   @doc("Inner error details if they exist.")
-  innerErrorString: string;
+  @projectedName("csharp", "innerErrorString")
+  innererror?: string;
 }
 
 @doc("A provisioning error reported from a UC service.")
