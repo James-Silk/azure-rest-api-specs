@@ -1,0 +1,24 @@
+{
+  "title": "Delete Number (Maximum).",
+  "operationId": "Accounts_DeletePhoneNumbers",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "-",
+    "phoneNumber": "+541439627713"
+  },
+  "responses": {
+    "204": {},
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "500": {}
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Get an RFI by tenant ID (Minimum).",
+  "operationId": "Rfi_GetRfiByTenant",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "tenantId": "mrztaoglwkalsafazdcxhazrsk"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "consentedCountries": [
+          "husjwaqcbwfrqmohxtbphhyku"
+        ],
+        "customerRelationship": {
+          "status": "kohkcsjjaxizbsabdglwtssucl",
+          "comment": "u"
+        }
+      }
+    },
+    "404": {},
+    "500": {}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "title": "Get a Civic Address (Minimum).",
+  "operationId": "Accounts_GetTeamsCivicAddress",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "w-v6",
+    "civicAddressId": "rdjwfzqvdwzblhzoolle"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "rb",
+        "defaultLocationId": "oo"
+      }
+    },
+    "400": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw"
+          }
+        ]
+      }
+    },
+    "404": {},
+    "500": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Delete Account (Minimum).",
+  "operationId": "Account_Delete",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "hN-_1"
+  },
+  "responses": {
+    "204": {},
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "500": {}
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Get list of Requests for Information (Consents) (Maximum).",
+  "operationId": "Rfis_GetRfis",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "productContext": "mbidcfnotjvjnrnyxolkynpsqsrx",
+    "filter": "gwtnl",
+    "skip": 0,
+    "maxpagesize": 462,
+    "pagenumber": 29
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "id": "yilogahpbdnvcwn",
+            "tenantId": "wwcsmgzsojwmdxliyovedhnxtbta",
+            "productContext": "xkzfpkhwkipzlhuapwhcpqgnecjwe",
+            "operatorId": "qpaexqxfzrvthohaedhpp",
+            "status": "Active",
+            "consentedOn": "2024-01-12T18:06:48.833Z",
+            "lastModifiedOn": "2024-01-12T18:06:48.833Z",
+            "consentedCountries": [
+              "husjwaqcbwfrqmohxtbphhyku"
+            ],
+            "contacts": [
+              {
+                "fullName": "hh",
+                "email": "dddmefhgaijzlznuonqt",
+                "phoneNumber": "fejpuq",
+                "companyName": "bwsojju",
+                "companySize": "xufjmlqjo"
+              }
+            ],
+            "customerRelationship": {
+              "status": "kohkcsjjaxizbsabdglwtssucl",
+              "lastModifiedOn": "2024-01-12T18:06:48.833Z",
+              "comment": "u"
+            }
+          }
+        ],
+        "numberOfRecords": 30,
+        "nextLink": "mlubcrkbeyedspgzzdbiemkbh",
+        "skip": 0,
+        "maxPageSize": 481,
+        "pageNumber": 19
+      }
+    },
+    "204": {},
+    "500": {}
+  }
+}

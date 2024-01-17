@@ -1,0 +1,67 @@
+{
+  "title": "Update the Customer Relationship (Maximum).",
+  "operationId": "Rfi_UpdateCustomerRelationship",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "tenantId": "nmbqmrotxhjndcp",
+    "body": {
+      "status": "kohkcsjjaxizbsabdglwtssucl",
+      "lastModifiedOn": "2024-01-12T18:06:48.833Z",
+      "comment": "u"
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "status": "kohkcsjjaxizbsabdglwtssucl",
+        "lastModifiedOn": "2024-01-12T18:06:48.833Z",
+        "comment": "u"
+      }
+    },
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "409": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "412": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "500": {}
+  }
+}

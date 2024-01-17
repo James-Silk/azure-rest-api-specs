@@ -1,0 +1,26 @@
+{
+  "title": "Get list of Accounts (Minimum).",
+  "operationId": "Accounts",
+  "parameters": {
+    "api-version": "2024-01-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "name": "noborxcomldrphl",
+            "teamsOcSubCount": 10,
+            "teamsDrSubCount": 17,
+            "teamsTpmSubCount": 3,
+            "zoomSubCount": 25,
+            "serviceProvisioningStatus": "Pending"
+          }
+        ],
+        "numberOfRecords": 16
+      }
+    },
+    "204": {},
+    "500": {}
+  }
+}

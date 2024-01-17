@@ -1,0 +1,82 @@
+{
+  "title": "Create or update a Number (Minimum).",
+  "operationId": "Accounts_PutPhoneNumbers",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "E6_p",
+    "phoneNumber": "+481",
+    "body": {
+      "phoneNumberString": "+2836966564",
+      "services": {
+        "teamsOcEnabled": true,
+        "teamsDrEnabled": true,
+        "teamsTpmEnabled": true,
+        "zoomEnabled": true
+      },
+      "customSipHeaderString": "_"
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "phoneNumberString": "+917988691580257",
+        "accountNameString": "_4P7",
+        "details": {
+          "phoneNumberString": "+2836966564",
+          "services": {
+            "teamsOcEnabled": true,
+            "teamsDrEnabled": true,
+            "teamsTpmEnabled": true,
+            "zoomEnabled": true
+          },
+          "customSipHeaderString": "_"
+        },
+        "status": "TPM Assigned",
+        "serviceProvisioningStatus": "Pending"
+      }
+    },
+    "201": {
+      "body": {
+        "phoneNumberString": "+917988691580257",
+        "accountNameString": "_4P7",
+        "details": {
+          "phoneNumberString": "+2836966564",
+          "services": {
+            "teamsOcEnabled": true,
+            "teamsDrEnabled": true,
+            "teamsTpmEnabled": true,
+            "zoomEnabled": true
+          },
+          "customSipHeaderString": "_"
+        },
+        "status": "TPM Assigned",
+        "serviceProvisioningStatus": "Pending"
+      }
+    },
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "409": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "412": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "500": {}
+  }
+}

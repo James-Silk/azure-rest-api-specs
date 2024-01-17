@@ -1,0 +1,16 @@
+{
+  "title": "Enable or disable syncing of provisioned data to Teams (Maximum).",
+  "operationId": "Accounts_SetTeamsSync",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "7_B",
+    "body": {
+      "teamsSyncEnabledBool": true
+    }
+  },
+  "responses": {
+    "200": {},
+    "400": {},
+    "500": {}
+  }
+}

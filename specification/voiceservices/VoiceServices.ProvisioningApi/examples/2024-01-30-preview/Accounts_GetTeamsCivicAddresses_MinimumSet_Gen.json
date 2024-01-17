@@ -1,0 +1,43 @@
+{
+  "title": "Get a list of Civic Addresses (Minimum).",
+  "operationId": "Accounts_GetTeamsCivicAddresses",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "x-2"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "id": "rb",
+            "defaultLocationId": "oo"
+          }
+        ],
+        "numberOfRecords": 26
+      }
+    },
+    "400": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw"
+          }
+        ]
+      }
+    },
+    "500": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw"
+          }
+        ]
+      }
+    }
+  }
+}

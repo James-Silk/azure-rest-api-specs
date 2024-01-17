@@ -1,0 +1,36 @@
+{
+  "title": "Get a Number (Minimum).",
+  "operationId": "Accounts_GetPhoneNumbers",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "6___",
+    "phoneNumber": "+450"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "phoneNumberString": "+917988691580257",
+        "accountNameString": "_4P7",
+        "details": {
+          "phoneNumberString": "+2836966564",
+          "services": {
+            "teamsOcEnabled": true,
+            "teamsDrEnabled": true,
+            "teamsTpmEnabled": true,
+            "zoomEnabled": true
+          },
+          "customSipHeaderString": "_"
+        },
+        "status": "TPM Assigned",
+        "serviceProvisioningStatus": "Pending"
+      }
+    },
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "500": {}
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "title": "Get a list of Civic Addresses (Maximum).",
+  "operationId": "Accounts_GetTeamsCivicAddresses",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "844-p_",
+    "filter": "gwtnl",
+    "skip": 0,
+    "maxpagesize": 462,
+    "pagenumber": 29
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "id": "rb",
+            "country": "fmjvhck",
+            "houseNumber": "hvfgeryobrkeutyswvyflbjrrjhe",
+            "houseNumberSuffix": "cadjzmneiipolgngavxufrsmizk",
+            "preDirectional": "kdxypp",
+            "streetName": "jzyzuhinsvzscsywmgoy",
+            "streetSuffix": "sgywhxfeqol",
+            "postDirectional": "amfmz",
+            "stateOrProvince": "l",
+            "countyOrDistrict": "uuiqxqakskzkzrgfnyldc",
+            "cityOrTown": "hkdsulqnfcqmxsflmlmkibcjx",
+            "cityOrTownAlias": "kyzgupdtmgshjanxhptwcvm",
+            "postalOrZipCode": "mfeyivyctbteqwmkzvydeocu",
+            "description": "imwcrt",
+            "companyName": "sp",
+            "companyId": "mmwdorangf",
+            "defaultLocationId": "oo",
+            "validationStatus": "NotValidated",
+            "tenantId": "elrtkxre",
+            "partnerId": "ujmahmsfjhwncjbmxgpg",
+            "locations": [
+              {
+                "id": "vqzbyykdgquwg",
+                "civicAddressId": "ebconogtvvhgchhbu",
+                "description": "pc",
+                "additionalInfo": "zpl",
+                "isDefault": true,
+                "elin": "spvtgqiosat"
+              }
+            ],
+            "latitude": "ud",
+            "longitude": "bwcmtdrtxv"
+          }
+        ],
+        "numberOfRecords": 26,
+        "nextLink": "xklkq",
+        "skip": 0,
+        "maxPageSize": 71,
+        "pageNumber": 30
+      }
+    },
+    "400": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw",
+            "message": "ptjlj"
+          }
+        ]
+      }
+    },
+    "500": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw",
+            "message": "ptjlj"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Update the Customer Relationship (Minimum).",
+  "operationId": "Rfi_UpdateCustomerRelationship",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "tenantId": "dlnrvpheqy",
+    "body": {
+      "status": "kohkcsjjaxizbsabdglwtssucl",
+      "comment": "u"
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "status": "kohkcsjjaxizbsabdglwtssucl",
+        "comment": "u"
+      }
+    },
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "409": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "412": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "500": {}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "title": "Get an RFI by tenant ID (Maximum).",
+  "operationId": "Rfi_GetRfiByTenant",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "tenantId": "tznirnktcakpp"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "yilogahpbdnvcwn",
+        "tenantId": "wwcsmgzsojwmdxliyovedhnxtbta",
+        "productContext": "xkzfpkhwkipzlhuapwhcpqgnecjwe",
+        "operatorId": "qpaexqxfzrvthohaedhpp",
+        "status": "Active",
+        "consentedOn": "2024-01-12T18:06:48.833Z",
+        "lastModifiedOn": "2024-01-12T18:06:48.833Z",
+        "consentedCountries": [
+          "husjwaqcbwfrqmohxtbphhyku"
+        ],
+        "contacts": [
+          {
+            "fullName": "hh",
+            "email": "dddmefhgaijzlznuonqt",
+            "phoneNumber": "fejpuq",
+            "companyName": "bwsojju",
+            "companySize": "xufjmlqjo"
+          }
+        ],
+        "customerRelationship": {
+          "status": "kohkcsjjaxizbsabdglwtssucl",
+          "lastModifiedOn": "2024-01-12T18:06:48.833Z",
+          "comment": "u"
+        }
+      }
+    },
+    "404": {},
+    "500": {}
+  }
+}

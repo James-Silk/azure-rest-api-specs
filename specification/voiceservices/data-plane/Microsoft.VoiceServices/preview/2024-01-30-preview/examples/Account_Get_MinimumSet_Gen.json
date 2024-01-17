@@ -1,0 +1,28 @@
+{
+  "title": "Get Account (Minimum).",
+  "operationId": "Account_Get",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "_jU_",
+    "status": true
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "name": "noborxcomldrphl",
+        "teamsOcSubCount": 10,
+        "teamsDrSubCount": 17,
+        "teamsTpmSubCount": 3,
+        "zoomSubCount": 25,
+        "serviceProvisioningStatus": "Pending"
+      }
+    },
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "500": {}
+  }
+}

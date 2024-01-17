@@ -1,0 +1,41 @@
+{
+  "title": "Get list of Numbers on an Account (Minimum).",
+  "operationId": "Accounts_GetNumbers",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "1_HC"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "phoneNumberString": "+917988691580257",
+            "accountNameString": "_4P7",
+            "details": {
+              "phoneNumberString": "+2836966564",
+              "services": {
+                "teamsOcEnabled": true,
+                "teamsDrEnabled": true,
+                "teamsTpmEnabled": true,
+                "zoomEnabled": true
+              },
+              "customSipHeaderString": "_"
+            },
+            "status": "TPM Assigned",
+            "serviceProvisioningStatus": "Pending"
+          }
+        ],
+        "numberOfRecords": 10
+      }
+    },
+    "204": {},
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "500": {}
+  }
+}

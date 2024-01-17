@@ -1,0 +1,91 @@
+{
+  "title": "Get list of Accounts (Maximum).",
+  "operationId": "Accounts",
+  "parameters": {
+    "filter": "gwtnl",
+    "skip": 0,
+    "maxpagesize": 462,
+    "pagenumber": 29,
+    "api-version": "2024-01-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "name": "noborxcomldrphl",
+            "details": {
+              "accountNameString": "_",
+              "correlatorId": "svlusp",
+              "teamsCommonConfig": {
+                "tenantId": "fqvbusjvyjfcwvefs",
+                "syncEnabled": true
+              },
+              "teamsOcEnabled": true,
+              "teamsOcConfig": {},
+              "directRoutingEnabled": true,
+              "directRouting": {
+                "callScreening": true,
+                "subdomain": "X4gd",
+                "subdomainTokens": {
+                  "region1Token": {
+                    "token": "_=21=vc"
+                  },
+                  "region2Token": {
+                    "token": "_=21=vc"
+                  }
+                },
+                "subdomainProvisionedState": "Provisioned",
+                "actualSubdomainTokens": {
+                  "region1Token": {
+                    "token": "_=21=vc"
+                  },
+                  "region2Token": {
+                    "token": "_=21=vc"
+                  }
+                }
+              },
+              "teamsTpmEnabled": true,
+              "teamsTpmConfig": {},
+              "zoomEnabled": true,
+              "zoomConfig": {}
+            },
+            "etag": "zdmxazvnuyec",
+            "directRoutingProvisioningState": {
+              "teamsDrSubdomainTokens": {
+                "region1Token": {
+                  "token": "_=21=vc"
+                },
+                "region2Token": {
+                  "token": "_=21=vc"
+                }
+              },
+              "teamsDrSubdomainStatus": "Provisioned"
+            },
+            "teamsOcSubCount": 10,
+            "teamsDrSubCount": 17,
+            "teamsTpmSubCount": 3,
+            "zoomSubCount": 25,
+            "serviceProvisioningStatus": "Pending",
+            "serviceProvisioningErrors": {
+              "allErrors": [
+                {
+                  "service": "oc",
+                  "errorCode": "wcufwqablmvkmqbemwajq",
+                  "message": "btsegklbgosreuhaifzrmiwbfiezl"
+                }
+              ]
+            }
+          }
+        ],
+        "numberOfRecords": 16,
+        "nextLink": "welosqosjzqncqxsw",
+        "skip": 0,
+        "maxPageSize": 478,
+        "pageNumber": 6
+      }
+    },
+    "204": {},
+    "500": {}
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Create or update Numbers (Minimum).",
+  "operationId": "Accounts_PostBatchNumbers",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "A__o__",
+    "body": {}
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "numbers": [
+          {
+            "phoneNumberString": "+917988691580257",
+            "accountNameString": "_4P7",
+            "details": {
+              "phoneNumberString": "+2836966564",
+              "services": {
+                "teamsOcEnabled": true,
+                "teamsDrEnabled": true,
+                "teamsTpmEnabled": true,
+                "zoomEnabled": true
+              },
+              "customSipHeaderString": "_"
+            },
+            "status": "TPM Assigned",
+            "serviceProvisioningStatus": "Pending"
+          }
+        ]
+      }
+    },
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq"
+      }
+    },
+    "500": {}
+  }
+}

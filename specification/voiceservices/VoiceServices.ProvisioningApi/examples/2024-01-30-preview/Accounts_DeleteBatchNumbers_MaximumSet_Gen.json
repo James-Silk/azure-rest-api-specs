@@ -1,0 +1,219 @@
+{
+  "title": "Delete batches of numbers (Maximum).",
+  "operationId": "Accounts_DeleteBatchNumbers",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "_-i_",
+    "account": {
+      "numbers": [
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        },
+        {
+          "phoneNumberString": "+331176583417"
+        }
+      ]
+    }
+  },
+  "responses": {
+    "204": {},
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "500": {}
+  }
+}

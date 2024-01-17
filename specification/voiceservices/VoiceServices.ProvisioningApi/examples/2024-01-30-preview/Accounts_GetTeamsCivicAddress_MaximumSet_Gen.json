@@ -1,0 +1,72 @@
+{
+  "title": "Get a Civic Address (Maximum).",
+  "operationId": "Accounts_GetTeamsCivicAddress",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "_L1-",
+    "civicAddressId": "ltjgbibkdxzfbaimzmujitfy"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "rb",
+        "country": "fmjvhck",
+        "houseNumber": "hvfgeryobrkeutyswvyflbjrrjhe",
+        "houseNumberSuffix": "cadjzmneiipolgngavxufrsmizk",
+        "preDirectional": "kdxypp",
+        "streetName": "jzyzuhinsvzscsywmgoy",
+        "streetSuffix": "sgywhxfeqol",
+        "postDirectional": "amfmz",
+        "stateOrProvince": "l",
+        "countyOrDistrict": "uuiqxqakskzkzrgfnyldc",
+        "cityOrTown": "hkdsulqnfcqmxsflmlmkibcjx",
+        "cityOrTownAlias": "kyzgupdtmgshjanxhptwcvm",
+        "postalOrZipCode": "mfeyivyctbteqwmkzvydeocu",
+        "description": "imwcrt",
+        "companyName": "sp",
+        "companyId": "mmwdorangf",
+        "defaultLocationId": "oo",
+        "validationStatus": "NotValidated",
+        "tenantId": "elrtkxre",
+        "partnerId": "ujmahmsfjhwncjbmxgpg",
+        "locations": [
+          {
+            "id": "vqzbyykdgquwg",
+            "civicAddressId": "ebconogtvvhgchhbu",
+            "description": "pc",
+            "additionalInfo": "zpl",
+            "isDefault": true,
+            "elin": "spvtgqiosat"
+          }
+        ],
+        "latitude": "ud",
+        "longitude": "bwcmtdrtxv"
+      }
+    },
+    "400": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw",
+            "message": "ptjlj"
+          }
+        ]
+      }
+    },
+    "404": {},
+    "500": {
+      "body": {
+        "code": "xovkiqqrbkczhgr",
+        "message": "vcfxfefzcnatvckvkuypwqfl",
+        "details": [
+          {
+            "code": "oxpidcevgtyqpnggyuw",
+            "message": "ptjlj"
+          }
+        ]
+      }
+    }
+  }
+}

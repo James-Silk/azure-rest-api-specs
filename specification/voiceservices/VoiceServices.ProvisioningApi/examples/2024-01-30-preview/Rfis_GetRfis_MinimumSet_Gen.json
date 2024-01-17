@@ -1,0 +1,27 @@
+{
+  "title": "Get list of Requests for Information (Consents) (Minimum).",
+  "operationId": "Rfis_GetRfis",
+  "parameters": {
+    "api-version": "2024-01-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "consentedCountries": [
+              "husjwaqcbwfrqmohxtbphhyku"
+            ],
+            "customerRelationship": {
+              "status": "kohkcsjjaxizbsabdglwtssucl",
+              "comment": "u"
+            }
+          }
+        ],
+        "numberOfRecords": 30
+      }
+    },
+    "204": {},
+    "500": {}
+  }
+}

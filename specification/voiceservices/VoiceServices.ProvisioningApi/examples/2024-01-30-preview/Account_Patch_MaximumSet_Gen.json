@@ -1,0 +1,227 @@
+{
+  "title": "Create or update Account (Maximum).",
+  "operationId": "Account_Patch",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "v--3",
+    "if-match": "jhbborersafty",
+    "if-none-match": "slupfabdigjviwkhrnqlza",
+    "account": {
+      "accountNameString": "_--_k",
+      "correlatorId": "sut",
+      "teamsCommonConfig": {
+        "tenantId": "znhxhigjdebgwgabmqmqazuep",
+        "syncEnabled": true
+      },
+      "teamsOcEnabled": true,
+      "teamsOcConfig": {},
+      "directRoutingEnabled": true,
+      "directRouting": {
+        "callScreening": true,
+        "subdomain": "_q4",
+        "subdomainTokens": {
+          "region1Token": {
+            "token": "_7--3p"
+          },
+          "region2Token": {
+            "token": "_7--3p"
+          }
+        },
+        "subdomainProvisionedState": "Provisioned",
+        "actualSubdomainTokens": {
+          "region1Token": {
+            "token": "_7--3p"
+          },
+          "region2Token": {
+            "token": "_7--3p"
+          }
+        }
+      },
+      "teamsTpmEnabled": true,
+      "teamsTpmConfig": {},
+      "zoomEnabled": true,
+      "zoomConfig": {}
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "name": "noborxcomldrphl",
+        "details": {
+          "accountNameString": "_",
+          "correlatorId": "svlusp",
+          "teamsCommonConfig": {
+            "tenantId": "fqvbusjvyjfcwvefs",
+            "syncEnabled": true
+          },
+          "teamsOcEnabled": true,
+          "teamsOcConfig": {},
+          "directRoutingEnabled": true,
+          "directRouting": {
+            "callScreening": true,
+            "subdomain": "X4gd",
+            "subdomainTokens": {
+              "region1Token": {
+                "token": "_7--3p"
+              },
+              "region2Token": {
+                "token": "_7--3p"
+              }
+            },
+            "subdomainProvisionedState": "Provisioned",
+            "actualSubdomainTokens": {
+              "region1Token": {
+                "token": "_7--3p"
+              },
+              "region2Token": {
+                "token": "_7--3p"
+              }
+            }
+          },
+          "teamsTpmEnabled": true,
+          "teamsTpmConfig": {},
+          "zoomEnabled": true,
+          "zoomConfig": {}
+        },
+        "etag": "zdmxazvnuyec",
+        "directRoutingProvisioningState": {
+          "teamsDrSubdomainTokens": {
+            "region1Token": {
+              "token": "_=21=vc"
+            },
+            "region2Token": {
+              "token": "_=21=vc"
+            }
+          },
+          "teamsDrSubdomainStatus": "Provisioned"
+        },
+        "teamsOcSubCount": 10,
+        "teamsDrSubCount": 17,
+        "teamsTpmSubCount": 3,
+        "zoomSubCount": 25,
+        "serviceProvisioningStatus": "Pending",
+        "serviceProvisioningErrors": {
+          "allErrors": [
+            {
+              "service": "oc",
+              "errorCode": "wcufwqablmvkmqbemwajq",
+              "message": "btsegklbgosreuhaifzrmiwbfiezl"
+            }
+          ]
+        }
+      }
+    },
+    "201": {
+      "body": {
+        "name": "noborxcomldrphl",
+        "details": {
+          "accountNameString": "_",
+          "correlatorId": "svlusp",
+          "teamsCommonConfig": {
+            "tenantId": "fqvbusjvyjfcwvefs",
+            "syncEnabled": true
+          },
+          "teamsOcEnabled": true,
+          "teamsOcConfig": {},
+          "directRoutingEnabled": true,
+          "directRouting": {
+            "callScreening": true,
+            "subdomain": "X4gd",
+            "subdomainTokens": {
+              "region1Token": {
+                "token": "_7--3p"
+              },
+              "region2Token": {
+                "token": "_7--3p"
+              }
+            },
+            "subdomainProvisionedState": "Provisioned",
+            "actualSubdomainTokens": {
+              "region1Token": {
+                "token": "_7--3p"
+              },
+              "region2Token": {
+                "token": "_7--3p"
+              }
+            }
+          },
+          "teamsTpmEnabled": true,
+          "teamsTpmConfig": {},
+          "zoomEnabled": true,
+          "zoomConfig": {}
+        },
+        "etag": "zdmxazvnuyec",
+        "directRoutingProvisioningState": {
+          "teamsDrSubdomainTokens": {
+            "region1Token": {
+              "token": "_=21=vc"
+            },
+            "region2Token": {
+              "token": "_=21=vc"
+            }
+          },
+          "teamsDrSubdomainStatus": "Provisioned"
+        },
+        "teamsOcSubCount": 10,
+        "teamsDrSubCount": 17,
+        "teamsTpmSubCount": 3,
+        "zoomSubCount": 25,
+        "serviceProvisioningStatus": "Pending",
+        "serviceProvisioningErrors": {
+          "allErrors": [
+            {
+              "service": "oc",
+              "errorCode": "wcufwqablmvkmqbemwajq",
+              "message": "btsegklbgosreuhaifzrmiwbfiezl"
+            }
+          ]
+        }
+      }
+    },
+    "400": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "404": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "409": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "412": {
+      "body": {
+        "code": "fqhqzxpxd",
+        "message": "bkkgupojomwirrpgwq",
+        "details": [],
+        "innerError": {
+          "code": "rjbcfsdgtcicbdjphllilkyfex",
+          "innerErrorString": "tkpqazxbnycxa"
+        }
+      }
+    },
+    "500": {}
+  }
+}

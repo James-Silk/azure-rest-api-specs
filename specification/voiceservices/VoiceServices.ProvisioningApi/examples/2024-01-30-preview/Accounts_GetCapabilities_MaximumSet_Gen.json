@@ -1,0 +1,44 @@
+{
+  "title": "Get the list of usages available (Maximum).",
+  "operationId": "Accounts_GetCapabilities",
+  "parameters": {
+    "api-version": "2024-01-30-preview",
+    "accountName": "p4-",
+    "phoneNumbers": {
+      "numbers": [
+        {
+          "phoneNumberString": "+331176583417"
+        }
+      ]
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "name": "ajfqr",
+            "offerTypes": [
+              "zldkqpzzbtiyqf"
+            ],
+            "mandatoryCapabilities": [
+              "qmukefykuaubkq"
+            ],
+            "choosableCapabilities": [
+              "kztk"
+            ],
+            "supportsTollFree": true
+          }
+        ],
+        "numberOfRecords": 11,
+        "nextLink": "bmcdmrgasyeyqbvspcg",
+        "skip": 0,
+        "maxPageSize": 360,
+        "pageNumber": 7
+      }
+    },
+    "400": {},
+    "404": {},
+    "500": {}
+  }
+}
